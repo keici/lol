@@ -47,7 +47,7 @@ mt.__namecall = newcclosure(function(self, ...)
     local args = {...}
     
 	if method == "FindPartOnRayWithIgnoreList" then 
-		args[1] = Ray.new(workspace.CurrentCamera.CFrame.Position, (target.Head.CFrame.p - workspace.CurrentCamera.CFrame.Position).unit * 1000
+		args[1] = Ray.new(workspace.CurrentCamera.CFrame.Position, (target.Head.CFrame.p - workspace.CurrentCamera.CFrame.Position).unit * 1000)
     end
     
 	return oldcall(self, unpack(args))
