@@ -20,7 +20,7 @@ mt.__namecall = newcclosure(function(self, ...)
 		if string.len(self.Name) == 38 then 
 			return nil
 		end
-		if self.Name == "DataEvent" and args[1][4] then 
+		if self.Name == "DataEvent" then 
 			if args[1][2] == "CT" or args[1][2] == "Both" then 
 				plr.SkinFolder.CTFolder[args[1][3]].Value = string.split(args[1][4][1], "_")[2]
 			end
