@@ -43,7 +43,7 @@ mt.__index = newcclosure(function(t, k)
 end)
 
 mt.__namecall = newcclosure(function(self, ...)
-	local method = getnamecallmethod()
+    local method = getnamecallmethod()
     local args = {...}
     
 	if method == "FindPartOnRayWithIgnoreList" then 
