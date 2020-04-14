@@ -48,7 +48,7 @@ function Config:Save(folder, file, cfg)
 end
 
 function Config:Delete(folder, file)
-    if isfile(folder.."/"..file) then 
+    if isfile(folder.."/"..file..".cfg") then 
         dfile(folder.."/"..file..".cfg")
     end
 end
