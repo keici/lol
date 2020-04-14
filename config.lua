@@ -4,12 +4,13 @@ local isfold = isfolder
 local isfile = isfile 
 local dfile = delfile
 local rfile = readfile
+local lfile = loadfile
 
 function Config:Create(folder, name, content)
     if not isfold(folder) then 
         makefolder(folder)
     end
-    local text = "{\n"
+    local text = "return {\n"
     if name and content and not isfile(folder.."/"..name..".cfg") then 
         if type(content) == "table" then
             for i,v in pairs(content) do
@@ -31,13 +32,13 @@ end
 
 function Config:Load(folder, file, cfg)
     if isfile(folder.."/"..file..".cfg") and cfg then
-        cfg = rfile(folder.."/"..file..".cfg")
+        cfg = lfile(folder.."/"..file..".cfg")
     end
 end
 
 function Config:Save(folder, file, cfg)
     if isfile(folder.."/"..file..".cfg") and cfg then 
-        local content = "{\n"
+        local content = "return {\n"
         for i,v in pairs(cfg) do
             content = content.."\t".."[\""..i.."\"]".." = "..tostring(v)..",\n"
         end
