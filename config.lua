@@ -30,14 +30,16 @@ function Config:Rename(folder, old, new)
     end
 end
 
-function Config:Load(folder, file, cfg)
-    if isfile(folder.."/"..file..".cfg") and cfg then
+function Config:Load(folder, file)
+    local cfg 
+    if isfile(folder.."/"..file..".cfg") then
         cfg = lfile(folder.."/"..file..".cfg")()
     end
+    return cfg
 end
 
 function Config:Save(folder, file, cfg)
-    if isfile(folder.."/"..file..".cfg") and cfg then 
+    if isfile(folder.."/"..file..".cfg") and type(cfg) == "table" then 
         local content = "return {\n"
         for i,v in pairs(cfg) do
             content = content.."\t".."[\""..i.."\"]".." = "..tostring(v)..",\n"
