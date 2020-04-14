@@ -13,7 +13,7 @@ function Config:Create(folder, name, content)
     if name and content and not isfile(folder.."/"..name..".cfg") then 
         if type(content) == "table" then
             for i,v in pairs(content) do
-                text = "\t"..text.."["..i.."]".." = "..tostring(v)..",\n"
+                text = text.."\t".."[\""..i.."\"]".." = "..tostring(v)..",\n"
             end
         end
     end
@@ -39,7 +39,7 @@ function Config:Save(folder, file, cfg)
     if isfile(folder.."/"..file..".cfg") and cfg then 
         local content = "{"
         for i,v in pairs(cfg) do
-            content = "\t"..content.."["..i.."]".." = "..tostring(v)..",\n"
+            content = content.."\t".."[\""..i.."\"]".." = "..tostring(v)..",\n"
         end
         content = content.."}"
         wfile(folder.."/"..file..".cfg", content)
