@@ -32,7 +32,7 @@ end
 
 function Config:Load(folder, file, cfg)
     if isfile(folder.."/"..file..".cfg") and cfg then
-        cfg = lfile(folder.."/"..file..".cfg")
+        cfg = lfile(folder.."/"..file..".cfg")()
     end
 end
 
