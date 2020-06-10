@@ -12,8 +12,8 @@ local Carti = {
     Camera = workspace.CurrentCamera
 }
 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/zypherlib.lua"))()
-local settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/settings.lua"))()
+getgenv().library = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/zypherlib.lua"))()
+getgenv().settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/settings.lua"))()
 local main = library:CreateMain("Poggers")
 
 services.UIS.InputBegan:Connect(function(input, gpe)
@@ -23,7 +23,7 @@ services.UIS.InputBegan:Connect(function(input, gpe)
 end)
 
 -- if retard does script.Disabled lol
-local function getsenvv(scr)
+getgenv().getsenvv = function(scr)
     for i,v in pairs(getgc()) do
         if getfenv(v).script == scr then
             return getfenv(v) or {}
