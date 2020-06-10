@@ -9,8 +9,8 @@ poop.services = {
 }
 
 poop.Carti = {
-    LP = services.Players.LocalPlayer,
-    Mouse = services.Players.LocalPlayer:GetMouse(),
+    LP = poop.services.Players.LocalPlayer,
+    Mouse = poop.services.Players.LocalPlayer:GetMouse(),
     Camera = workspace.CurrentCamera
 }
 
