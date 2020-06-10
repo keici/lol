@@ -10,7 +10,8 @@
 
 	Credits:
 		xTheAlex14#3200 -- The UILib
-		Candy#9786 -- Docs
+        Candy#9786 -- Docs
+        https://pastebin.com/raw/NZcX9A44
 ]]
 
 local lib = {}
