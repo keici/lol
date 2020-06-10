@@ -1,4 +1,6 @@
-local services = {
+getgenv().poop = {}
+
+poop.services = {
     Players = game:GetService("Players"),
     ReplicatedStorage = game:GetService("ReplicatedStorage"),
     UIS = game:GetService("UserInputService"),
@@ -6,15 +8,20 @@ local services = {
     CoreGui = game:GetService("CoreGui")
 }
 
-local Carti = {
+poop.Carti = {
     LP = services.Players.LocalPlayer,
     Mouse = services.Players.LocalPlayer:GetMouse(),
     Camera = workspace.CurrentCamera
 }
 
-getgenv().library = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/zypherlib.lua"))()
-getgenv().settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/settings.lua"))()
-local main = library:CreateMain("Poggers")
+poop.library = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/zypherlib.lua"))()
+poop.settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/settings.lua"))()
+
+poop.getfeature = function(name)
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/features/"..name..".lua"))()
+end
+
+local main = poop.library:CreateMain("Poggers")
 
 services.UIS.InputBegan:Connect(function(input, gpe)
     if input.KeyCode == Enum.KeyCode.Insert and not gpe then 
@@ -23,7 +30,7 @@ services.UIS.InputBegan:Connect(function(input, gpe)
 end)
 
 -- if retard does script.Disabled lol
-getgenv().getsenvv = function(scr)
+poop.getsenvv = function(scr)
     for i,v in pairs(getgc()) do
         if getfenv(v).script == scr then
             return getfenv(v) or {}
