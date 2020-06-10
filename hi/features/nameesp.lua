@@ -1,0 +1,1 @@
+return poop.eplayers:Create("Toggle", "Name ESP", function(state) poop.settings.NameESPEnabled = state end)

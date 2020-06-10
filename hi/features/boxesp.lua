@@ -1,0 +1,1 @@
+return poop.eplayers:Create("Toggle", "Box ESP", function(state) poop.settings.BoxESPEnabled = state end)

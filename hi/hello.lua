@@ -43,4 +43,10 @@ poop.getsenvv = function(scr)
     end
 end
 
-local bruh = poop.getfeature("esp")
+local bruh = {}
+bruh.esp = poop.getfeature("esp")
+bruh.box = poop.getfeature("boxesp")
+bruh.name = poop.getfeature("nameesp")
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/functions.lua"))
