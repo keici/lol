@@ -30,7 +30,7 @@ poop.eplayers = poop.esp:CreateSection("Players")
 
 poop.services.UIS.InputBegan:Connect(function(input, gpe)
     if input.KeyCode == Enum.KeyCode.Insert and not gpe then 
-        services.CoreGui.Poggers.Enabled = not services.CoreGui.Poggers.Enabled
+        poop.services.CoreGui.Poggers.Enabled = not poop.services.CoreGui.Poggers.Enabled
     end
 end)
 
