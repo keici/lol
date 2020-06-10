@@ -21,9 +21,14 @@ poop.getfeature = function(name)
     return loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/features/"..name..".lua"))()
 end
 
-local main = poop.library:CreateMain("Poggers")
+poop.main = poop.library:CreateMain("Poggers")
 
-services.UIS.InputBegan:Connect(function(input, gpe)
+poop.esp = poop.main:CreateCategory("ESP")
+poop.eplayers = poop.esp:CreateSection("Players")
+
+
+
+poop.services.UIS.InputBegan:Connect(function(input, gpe)
     if input.KeyCode == Enum.KeyCode.Insert and not gpe then 
         services.CoreGui.Poggers.Enabled = not services.CoreGui.Poggers.Enabled
     end
@@ -38,3 +43,4 @@ poop.getsenvv = function(scr)
     end
 end
 
+local bruh = poop.getfeature("esp")
