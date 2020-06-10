@@ -14,6 +14,7 @@ local Carti = {
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/zypherlib.lua"))()
 local settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/settings.lua"))()
+local main = library:CreateMain("Poggers")
 
 services.UIS.InputBegan:Connect(function(input, gpe)
     if input.KeyCode == Enum.KeyCode.Insert and not gpe then 
