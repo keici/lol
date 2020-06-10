@@ -32,17 +32,17 @@ local Carti = poop.Carti
 
 local function createesp(player, box, name)
     connections[player.Name] = services.RunService.RenderStepped:Connect(function()
-        if player then
+        if player and player.TeamColor ~= Carti.LP.TeamColor then
             if player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character.Humanoid.Health > 0 then
                 local pos, vis = Carti.Camera:WorldToViewportPoint(player.Character.HumanoidRootPart.Position)
-                local top = pos + Vector3.new(0, 3, 0)
-                local bottom = pos - Vector3.new(0, 3, 0)
+                local top = Carti.Camera:WorldToViewportPoint(player.Character.Head.Position)
+                local bottom = Carti.Camera:WorldToViewportPoint(player.Character.LeftFoot.Position)
                 if vis then
                     box.Size = Vector2.new(2000/pos.Z, top.Y - bottom.Y)
                     box.Position = Vector2.new(pos.X - box.Size.X/2, pos.Y - box.Size.Y/2)
 
                     name.Text = player.Name
-                    name.Position = Vector2.new(pos.X, (pos.Y - box.Size.Y/2) - 20)
+                    name.Position = Vector2.new(pos.X, (pos.Y + box.Size.Y/2) - 20)
 
                     box.Visible = settings.BoxESPEnabled and settings.ESPEnabled
                     name.Visible = settings.NameESPEnabled and settings.ESPEnabled

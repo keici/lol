@@ -49,4 +49,4 @@ bruh.box = poop.getfeature("boxesp")
 bruh.name = poop.getfeature("nameesp")
 
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/functions.lua"))
+loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/functions.lua"))()
