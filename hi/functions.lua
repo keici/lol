@@ -25,13 +25,12 @@ local function drawcircle()
     return circle
 end
 
-local connections = {}
 local settings = poop.settings
 local services = poop.services
 local Carti = poop.Carti
 
 local function createesp(player, box, name)
-    connections[player.Name] = services.RunService.RenderStepped:Connect(function()
+    services.RunService:BindToRenderStep(player.Name, 1, function()
         if player and player.TeamColor ~= Carti.LP.TeamColor then
             if player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character.Humanoid.Health > 0 then
                 local pos, vis = Carti.Camera:WorldToViewportPoint(player.Character.HumanoidRootPart.Position)
@@ -72,5 +71,5 @@ services.Players.PlayerAdded:Connect(function(player)
 end)
 
 services.Players.PlayerRemoving:Connect(function(player)
-    connections[player.Name]:Disconnect()
+    services.RunService:UnbindFromRenderStep(player.Name)
 end)
