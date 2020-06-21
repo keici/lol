@@ -1,17 +1,14 @@
 --[[
 
-	  _____                  _
-	 |__  /  _   _   _ __   | |__     ___   _ __
-	   / /  | | | | | '_ \  | '_ \   / _ \ | '__|
-	  / /_  | |_| | | |_) | | | | | |  __/ | |
-	 /____|  \__, | | .__/  |_| |_|  \___| |_|
-			 |___/  |_|
-			 
+    _____                  _                   
+   |__  /  _   _   _ __   | |__     ___   _ __ 
+     / /  | | | | | '_ \  | '_ \   / _ \ | '__|
+    / /_  | |_| | | |_) | | | | | |  __/ | |   
+   /____|  \__, | | .__/  |_| |_|  \___| |_|   
+           |___/  |_|                          
 
-	Credits:
-		xTheAlex14#3200 -- The UILib
-        Candy#9786 -- Docs
-        https://pastebin.com/raw/NZcX9A44
+   Made by: xTheAlex14#3200
+   Docs: https://zypher.wtf/docs/uilibdocs.html
 ]]
 
 local lib = {}
@@ -103,49 +100,128 @@ function lib:CreateMain(projName)
         Size = UDim2.new(0, 150, 0, 456),
     })
 
-    objects.Sidecategories = lib:Create("Frame", {
-        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        BackgroundTransparency = 1.000,
-        BorderColor3 = Color3.fromRGB(27, 42, 53),
-        BorderSizePixel = 0,
-        Position = UDim2.new(0, 0, 0, 15),
-        Size = UDim2.new(0, 150, 0, 320),
-    })
+    if projName == "Zypher" then
+        objects.Logoframe = lib:Create("ImageLabel", {
+            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            BackgroundTransparency = 1.000,
+            BorderColor3 = Color3.fromRGB(27, 42, 53),
+            Position = UDim2.new(0.233333349, 0, 0.0295454524, 0),
+            Size = UDim2.new(0, 80, 0, 80),
+            Image = "rbxassetid://3570695787",
+        })
+    
+        objects.Logoframegradient = lib:Create("UIGradient", {
+            Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 183, 183)), ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 248, 248)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(125, 92, 164))},
+            Rotation = 90,
+        })
+    
+        objects.Logo = lib:Create("ImageLabel", {
+            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            BackgroundTransparency = 1.000,
+            BorderColor3 = Color3.fromRGB(27, 42, 53),
+            Position = UDim2.new(0.12023773, 0, 0.121428683, 0),
+            Size = UDim2.new(0, 60, 0, 60),
+            Image = "rbxassetid://5082829436",
+        })
+    
+        objects.Logogradient = lib:Create("UIGradient", {
+            Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(247, 251, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(103, 103, 103))},
+        })
+    
+        objects.Sidecategories = lib:Create("Frame", {
+            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            BackgroundTransparency = 1.000,
+            BorderColor3 = Color3.fromRGB(27, 42, 53),
+            BorderSizePixel = 0,
+            Position = UDim2.new(0, 0, 0, 115),
+            Size = UDim2.new(0, 150, 0, 320),
+        })
+    
+        objects.Categorieshandler = lib:Create("Frame", {
+            Name = "Categories",
+            BackgroundColor3 = Color3.fromRGB(46, 46, 54),
+            BackgroundTransparency = 1.000,
+            BorderColor3 = Color3.fromRGB(27, 42, 53),
+            BorderSizePixel = 0,
+            Position = UDim2.new(0, 150, 0, 4),
+            Size = UDim2.new(0, 550, 0, 456),
+        })
+        objects.Categorieshandler.ClipsDescendants = true
+    
+        local Categorieshandlerpagelayout = lib:Create("UIPageLayout", {
+            FillDirection = Enum.FillDirection.Vertical,
+            SortOrder = Enum.SortOrder.LayoutOrder,
+            EasingDirection = Enum.EasingDirection.InOut,
+            EasingStyle = Enum.EasingStyle.Quad,
+            ScrollWheelInputEnabled = false,
+            TweenTime = 0.700,
+        })
+    
+        Categorieshandlerpagelayout.Parent = objects.Categorieshandler
+        Categorieshandlerpagelayout = nil
+    
+        objects.Categoriesselector = lib:Create("ImageLabel", {
+            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            BackgroundTransparency = 1.000,
+            Position = UDim2.new(0, 7, 0, 115),
+            Size = UDim2.new(0, 136, 0, 32),
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = Color3.fromRGB(49, 49, 59),
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.060,
+        })
 
-    objects.Categorieshandler = lib:Create("Frame", {
-        Name = "Categories",
-        BackgroundColor3 = Color3.fromRGB(46, 46, 54),
-        BackgroundTransparency = 1.000,
-        BorderColor3 = Color3.fromRGB(27, 42, 53),
-        BorderSizePixel = 0,
-        Position = UDim2.new(0, 150, 0, 4),
-        Size = UDim2.new(0, 550, 0, 456),
-    })
-    objects.Categorieshandler.ClipsDescendants = true
+        objects.Logoframe.Parent = objects.Sidebar
+        objects.Logoframegradient.Parent = objects.Logoframe
+        objects.Logo.Parent = objects.Logoframe
+        objects.Logogradient.Parent = objects.Logo
 
-	local Categorieshandlerpagelayout = lib:Create("UIPageLayout", {
-        FillDirection = Enum.FillDirection.Vertical,
-        SortOrder = Enum.SortOrder.LayoutOrder,
-        EasingDirection = Enum.EasingDirection.InOut,
-        EasingStyle = Enum.EasingStyle.Quad,
-        ScrollWheelInputEnabled = false,
-        TweenTime = 0.700,
-	})
-
-	Categorieshandlerpagelayout.Parent = objects.Categorieshandler
-	Categorieshandlerpagelayout = nil
-
-    objects.Categoriesselector = lib:Create("ImageLabel", {
-        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-        BackgroundTransparency = 1.000,
-        Position = UDim2.new(0, 7, 0, 15),
-        Size = UDim2.new(0, 136, 0, 32),
-        Image = "rbxassetid://3570695787",
-        ImageColor3 = Color3.fromRGB(49, 49, 59),
-        ScaleType = Enum.ScaleType.Slice,
-        SliceCenter = Rect.new(100, 100, 100, 100),
-        SliceScale = 0.060,
-    })
+    else
+        objects.Sidecategories = lib:Create("Frame", {
+            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            BackgroundTransparency = 1.000,
+            BorderColor3 = Color3.fromRGB(27, 42, 53),
+            BorderSizePixel = 0,
+            Position = UDim2.new(0, 0, 0, 15),
+            Size = UDim2.new(0, 150, 0, 320),
+        })
+    
+        objects.Categorieshandler = lib:Create("Frame", {
+            Name = "Categories",
+            BackgroundColor3 = Color3.fromRGB(46, 46, 54),
+            BackgroundTransparency = 1.000,
+            BorderColor3 = Color3.fromRGB(27, 42, 53),
+            BorderSizePixel = 0,
+            Position = UDim2.new(0, 150, 0, 4),
+            Size = UDim2.new(0, 550, 0, 456),
+        })
+        objects.Categorieshandler.ClipsDescendants = true
+    
+        local Categorieshandlerpagelayout = lib:Create("UIPageLayout", {
+            FillDirection = Enum.FillDirection.Vertical,
+            SortOrder = Enum.SortOrder.LayoutOrder,
+            EasingDirection = Enum.EasingDirection.InOut,
+            EasingStyle = Enum.EasingStyle.Quad,
+            ScrollWheelInputEnabled = false,
+            TweenTime = 0.700,
+        })
+    
+        Categorieshandlerpagelayout.Parent = objects.Categorieshandler
+        Categorieshandlerpagelayout = nil
+    
+        objects.Categoriesselector = lib:Create("ImageLabel", {
+            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            BackgroundTransparency = 1.000,
+            Position = UDim2.new(0, 7, 0, 15),
+            Size = UDim2.new(0, 136, 0, 32),
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = Color3.fromRGB(49, 49, 59),
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.060,
+        })
+    end
 
     categoriesdistance = 35
     categoriescounter = 0
@@ -231,7 +307,7 @@ function lib:CreateMain(projName)
         SectionsUIListLayout = nil
 
         local SectionsUIPadding = lib:Create("UIPadding", {
-            PaddingLeft = UDim.new(0, 25),
+            PaddingLeft = UDim.new(0, 15),
             PaddingTop = UDim.new(0, 20),
         })
 
@@ -244,101 +320,168 @@ function lib:CreateMain(projName)
         end
         
         if Image then
+            if projName == "Zypher" then
+                categories.imagebutton.MouseButton1Click:connect(function()
+                    objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,1,0,115), "Out", "Linear", 0.08)
+                    for i,v in pairs(objects.Categorieshandler:GetChildren()) do
+                        if v:IsA("Frame") then
+                            game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                            game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                            game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                        end
+                    end
+                    game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                    game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
 
-		categories.imagebutton.MouseButton1Click:connect(function()
-			objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,1,0,15), "Out", "Linear", 0.08)
-			for i,v in pairs(objects.Categorieshandler:GetChildren()) do
-                if v:IsA("Frame") then
-					game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-                    game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-                    game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-				end
-			end
-			game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-            game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-            game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
+                end)
 
-			objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
-		end)
+                categories.button.MouseButton1Click:connect(function()
+                    objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,1,0,115), "Out", "Linear", 0.08)
+                    for i,v in pairs(objects.Categorieshandler:GetChildren()) do
+                        if v:IsA("Frame") then
+                            game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                            game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                            game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                        end
+                    end
+                    game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                    game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
 
-		categories.button.MouseButton1Click:connect(function()
-			objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,1,0,15), "Out", "Linear", 0.08)
-			for i,v in pairs(objects.Categorieshandler:GetChildren()) do
-                if v:IsA("Frame") then
-					game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-                    game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-                    game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-				end
-			end
-			game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-            game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-            game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
+                end)
+            else
+                categories.imagebutton.MouseButton1Click:connect(function()
+                    objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,1,0,15), "Out", "Linear", 0.08)
+                    for i,v in pairs(objects.Categorieshandler:GetChildren()) do
+                        if v:IsA("Frame") then
+                            game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                            game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                            game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                        end
+                    end
+                    game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                    game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
 
-			objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
-        end)
-    
+                    objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
+                end)
+
+                categories.button.MouseButton1Click:connect(function()
+                    objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,1,0,15), "Out", "Linear", 0.08)
+                    for i,v in pairs(objects.Categorieshandler:GetChildren()) do
+                        if v:IsA("Frame") then
+                            game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                            game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                            game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                        end
+                    end
+                    game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                    game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+
+                    objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
+                end)
+            end
         else
-
-            categories.imagebutton.MouseButton1Click:connect(function()
-                objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,27,0,15), "Out", "Linear", 0.08)
-                for i,v in pairs(objects.Categorieshandler:GetChildren()) do
-                    if v:IsA("Frame") then
-                        game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-                        game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-                        game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+            if projName == "Zypher" then
+                categories.imagebutton.MouseButton1Click:connect(function()
+                    objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,27,0,115), "Out", "Linear", 0.08)
+                    for i,v in pairs(objects.Categorieshandler:GetChildren()) do
+                        if v:IsA("Frame") then
+                            game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                            game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                            game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                        end
                     end
-                end
-                game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-                game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-                game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-    
-                objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
-            end)
-    
-            categories.button.MouseButton1Click:connect(function()
-                objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,27,0,15), "Out", "Linear", 0.08)
-                for i,v in pairs(objects.Categorieshandler:GetChildren()) do
-                    if v:IsA("Frame") then
-                        game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-                        game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-                        game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                    game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                    game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+        
+                    objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
+                end)
+        
+                categories.button.MouseButton1Click:connect(function()
+                    objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,27,0,115), "Out", "Linear", 0.08)
+                    for i,v in pairs(objects.Categorieshandler:GetChildren()) do
+                        if v:IsA("Frame") then
+                            game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                            game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                            game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                        end
                     end
-                end
-                game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
-                game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-                game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
-    
-                objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
-            end)
+                    game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                    game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+        
+                    objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
+                end)
+            else
+                categories.imagebutton.MouseButton1Click:connect(function()
+                    objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,27,0,15), "Out", "Linear", 0.08)
+                    for i,v in pairs(objects.Categorieshandler:GetChildren()) do
+                        if v:IsA("Frame") then
+                            game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                            game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                            game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                        end
+                    end
+                    game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                    game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+        
+                    objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
+                end)
+        
+                categories.button.MouseButton1Click:connect(function()
+                    objects.Categoriesselector:TweenPosition(categories.imagebutton.Position + UDim2.new(0,27,0,15), "Out", "Linear", 0.08)
+                    for i,v in pairs(objects.Categorieshandler:GetChildren()) do
+                        if v:IsA("Frame") then
+                            game:GetService("TweenService"):Create(v.Hider, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                            game:GetService("TweenService"):Create(v, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                            game:GetService("TweenService"):Create(v.ScrollingFrame, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                        end
+                    end
+                    game:GetService("TweenService"):Create(categories.containerhider, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+                    game:GetService("TweenService"):Create(categories.container, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+        
+                    objects.Categorieshandler["UIPageLayout"]:JumpTo(categories.container)
+                end)
+            end                
         end
 
         function categories:CreateSection(Name)
             local sections = {}
             
             sections.container = lib:Create("ImageLabel", {
+                Name = Name.."Container",
                 BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                 BackgroundTransparency = 1.000,
-                Size = UDim2.new(0, 500, 0, 40),
+                Position = UDim2.new(0, 315, 0, 24),
+                Size = UDim2.new(0, 520, 0, 48),
                 Image = "rbxassetid://3570695787",
                 ImageColor3 = Color3.fromRGB(39, 38, 46),
                 ScaleType = Enum.ScaleType.Slice,
                 SliceCenter = Rect.new(100, 100, 100, 100),
-                SliceScale = 0.100,
+                SliceScale = 0.040,
             })
 
             sections.containername = lib:Create("TextLabel", {
                 BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                 BackgroundTransparency = 1.000,
                 BorderSizePixel = 0,
-                Position = UDim2.new(0, 10, 0, 3),
-                Size = UDim2.new(0, 200, 0, 28),
+                Position = UDim2.new(0, 8, 0, 4),
+                Size = UDim2.new(0, 200, 0, 30),
                 Font = Enum.Font.GothamBold,
                 Text = Name,
                 TextColor3 = Color3.fromRGB(255, 255, 255),
                 TextSize = 18.000,
                 TextXAlignment = Enum.TextXAlignment.Left,
             })
-            categories.scrollingframe.CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,30)
+            categories.scrollingframe.CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,40)
             categories.scrollingframe.CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,40)
 
             sections.containerthings = lib:Create("ImageLabel", {
@@ -392,35 +535,36 @@ function lib:CreateMain(projName)
                 if Type then 
                     if string.lower(Type) == "button" or string.lower(Type) == "btn" then
                         things.buttonframe = lib:Create("Frame", {
-                            Name = "Button",
-                            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                            Name = Name.."Button",
+                            Active = true,
+                            BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                             BackgroundTransparency = 1.000,
                             BorderColor3 = Color3.fromRGB(27, 42, 53),
-                            Size = UDim2.new(0, 480, 0, 30), 
+                            Position = UDim2.new(0, -44, 0, -34),
+                            Selectable = true,
+                            Size = UDim2.new(0, 500, 0, 30),
                         })
                         things.button = lib:Create("ImageButton", {
-                            Name = "Button",
+                            AnchorPoint = Vector2.new(0.5, 0.5),
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
                             BorderColor3 = Color3.fromRGB(27, 42, 53),
-                            Size = UDim2.new(0, 480, 0, 30),
+                            Position = UDim2.new(0, 250, 0, 15),
+                            Size = UDim2.new(0, 500, 0, 30),
                             AutoButtonColor = false,
                             Image = "rbxassetid://3570695787",
                             ImageColor3 = Color3.fromRGB(29, 29, 35),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            Position = UDim2.new(0,240,0,15),
-                            SliceScale = 0.080,
-                            AnchorPoint = Vector2.new(0.5, 0.5),
+                            SliceScale = 0.040,
                         })
 
                         things.buttontext = lib:Create("TextLabel", {
-                            Name = "ButtonText",
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
                             BorderSizePixel = 0,
-                            Position = UDim2.new(0.300000012, 0, 0, 0),
-                            Size = UDim2.new(0, 200, 1, 0),
+                            Position = UDim2.new(0.100000001, 0, 0, 0),
+                            Size = UDim2.new(0, 400, 1, 0),
                             Font = Enum.Font.GothamBold,
                             Text = Name,
                             TextColor3 = Color3.fromRGB(255, 255, 255),
@@ -435,15 +579,14 @@ function lib:CreateMain(projName)
                         things.button.Parent = things.buttonframe
                         things.buttontext.Parent = things.button
 
-                        sections.containerthings.Position = UDim2.new(0, 0, 1, -sections.containerthings.Size.Y.Offset-6)
-                        
+                        sections.containerthings.Position = UDim2.new(0, 0, 0, sections.container.Size.Y.Offset-sections.containerthings.Size.Y.Offset-6)
 
                         things.button.MouseButton1Click:Connect(function()
                             if Others then
                                 if Others.animated then
-                                    game:GetService("TweenService"):Create(things.button, TweenInfo.new(0.1), {Size = UDim2.new(0, 460, 0, 28)}):Play()
-                                    wait(.1)
-                                    game:GetService("TweenService"):Create(things.button, TweenInfo.new(0.1), {Size = UDim2.new(0, 480, 0, 30)}):Play()
+                                    game:GetService("TweenService"):Create(things.button, TweenInfo.new(0.06), {Size = UDim2.new(0, 490, 0, 26)}):Play()
+                                    wait(.07)
+                                    game:GetService("TweenService"):Create(things.button, TweenInfo.new(0.06), {Size = UDim2.new(0, 500, 0, 30)}):Play()
                                 end
                             end
                             
@@ -452,24 +595,26 @@ function lib:CreateMain(projName)
                             end
                         end)
 
-                    elseif string.lower(Type) == "toggle" or string.lower(Type) == "switch" then
+                    elseif string.lower(Type) == "toggle" then
                         things.toggleb = lib:Create("ImageButton", {
+                            Name = Name.."Toggle",
+                            Active = false,
                             BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                             BackgroundTransparency = 1.000,
-                            BorderColor3 = Color3.fromRGB(27, 42, 53),
-                            Position = UDim2.new(0, 11, 0, 80),
-                            Size = UDim2.new(0, 480, 0, 35),
+                            BorderSizePixel = 0,
+                            Position = UDim2.new(0.0192307699, 0, 0.526315808, 0),
+                            Selectable = false,
+                            Size = UDim2.new(0, 500, 0, 35),
                             Image = "rbxassetid://3570695787",
                             ImageColor3 = Color3.fromRGB(29, 29, 35),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.080,
+                            SliceScale = 0.040,
                         })
 
                         things.toggletext = lib:Create("TextLabel", {
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
-                            BorderSizePixel = 0,
                             Position = UDim2.new(0, 4, 0, 2),
                             Size = UDim2.new(0, 200, 0, 30),
                             Font = Enum.Font.GothamBold,
@@ -480,29 +625,29 @@ function lib:CreateMain(projName)
                         })
 
                         things.toggle = lib:Create("ImageLabel", {
-                            Active = true,
-                            BackgroundColor3 = Color3.fromRGB(248, 248, 248),
+                            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
                             BorderSizePixel = 0,
-                            Position = UDim2.new(0, 416, 0, 2),
-                            Selectable = true,
+                            Position = UDim2.new(0, 435, 0, 2),
                             Size = UDim2.new(0, 56, 0, 26),
                             Image = "rbxassetid://3570695787",
-                            ImageColor3 = Color3.fromRGB(20, 20, 20),
+                            ImageColor3 = Color3.fromRGB(21, 21, 26),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.080,
+                            SliceScale = 0.040,
                         })
 
                         things.toggleonoff = lib:Create("ImageLabel", { 
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
+                            BorderSizePixel = 0,
                             Position = UDim2.new(0, 2, 0, 3),
                             Size = UDim2.new(0, 26, 0, 20),
+                            ZIndex = 2,
                             Image = "rbxassetid://3570695787",
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.060,
+                            SliceScale = 0.040,
                         })
 
                         sections.container.Size = sections.container.Size + UDim2.new(0,0,0,45)
@@ -514,10 +659,10 @@ function lib:CreateMain(projName)
                         things.toggle.Parent = things.toggletext
                         things.toggleonoff.Parent = things.toggle
 
-                        sections.containerthings.Position = UDim2.new(0, 0, 1, -sections.containerthings.Size.Y.Offset-6)
+                        sections.containerthings.Position = UDim2.new(0, 0, 0, sections.container.Size.Y.Offset-sections.containerthings.Size.Y.Offset-6)
 
                         if Others then 
-                            if Others.default then 
+                            if Others.default == true then 
                                 things.value = true
                                 game:GetService("TweenService"):Create(things.toggleonoff, TweenInfo.new(0.05), {Position = UDim2.new(1, -28,0, 3)}):Play()
                                 if CallBack then
@@ -526,33 +671,34 @@ function lib:CreateMain(projName)
                             end
                         end
 
+
                         things.toggleb.MouseButton1Click:Connect(function()
                             things.value = not things.value
-
-                            if CallBack then
-                                CallBack(things.value)
-                            end
 
                             if things.value then 
                                 game:GetService("TweenService"):Create(things.toggleonoff, TweenInfo.new(0.1), {Position = UDim2.new(1, -28,0, 3)}):Play()
                             else
                                 game:GetService("TweenService"):Create(things.toggleonoff, TweenInfo.new(0.1), {Position = UDim2.new(0, 2,0, 3)}):Play()
                             end
+                            if CallBack then
+                                CallBack(things.value)
+                            end
                         end)
                     elseif string.lower(Type) == "slider" then 
                         things.sliderback = lib:Create("ImageLabel", {
+                            Name = Name.."Slider",
                             Active = true,
                             BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                             BackgroundTransparency = 1.000,
                             BorderColor3 = Color3.fromRGB(27, 42, 53),
-                            Position = UDim2.new(0, 11, 0, 125),
+                            Position = UDim2.new(0, 15, 0, 125),
                             Selectable = true,
-                            Size = UDim2.new(0, 480, 0, 50),
+                            Size = UDim2.new(0, 500, 0, 50),
                             Image = "rbxassetid://3570695787",
                             ImageColor3 = Color3.fromRGB(29, 29, 35),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.080,
+                            SliceScale = 0.040,
                         })
 
                         things.slidertext = lib:Create("TextLabel", {
@@ -572,24 +718,24 @@ function lib:CreateMain(projName)
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
                             BorderSizePixel = 0,
+                            ClipsDescendants = true,
                             Position = UDim2.new(0, 0, 0, 30),
-                            Size = UDim2.new(0, 464, 0, 10),
+                            Size = UDim2.new(0, 490, 0, 10),
                             AutoButtonColor = false,
                             Image = "rbxassetid://3570695787",
-                            ImageColor3 = Color3.fromRGB(20, 20, 20),
+                            ImageColor3 = Color3.fromRGB(21, 21, 26),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.040,
-                            ZIndex = 2,
+                            SliceScale = 0.030,
                         })
 
                         things.sliderinner = lib:Create("ImageLabel", {
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
                             BorderSizePixel = 0,
-                            Position = UDim2.new(0, 0, 0.1, 0),
+                            Position = UDim2.new(0, 0, 0.100000001, 0),
                             Size = UDim2.new(0, 0, 1, -2),
-                            ZIndex = 4,
+                            ZIndex = 2,
                             Image = "rbxassetid://3570695787",
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
@@ -599,17 +745,39 @@ function lib:CreateMain(projName)
                         local min = Others.min or 0
                         local max = Others.max or 1
 
-                        things.slideramount = lib:Create("TextBox", {
-                            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-                            BackgroundTransparency = 1.000,
-                            BorderSizePixel = 0,
-                            Position = UDim2.new(0, 436, 0, 0),
-                            Size = UDim2.new(0, 30, 1, 0),
-                            Font = Enum.Font.GothamBold,
-                            Text = tostring(min),
-                            TextColor3 = Color3.fromRGB(255, 255, 255),
-                            TextSize = 18.000,
-                        })
+                        if Others then
+                            if Others.changablevalue then
+                                things.slideramount = lib:Create("TextBox", {
+                                    BackgroundColor3 = Color3.fromRGB(21, 21, 26),
+                                    BackgroundTransparency = 1.000,
+                                    BorderColor3 = Color3.fromRGB(27, 42, 53),
+                                    BorderSizePixel = 0,
+                                    Position = UDim2.new(0, 444, 0, 6),
+                                    Size = UDim2.new(0, 48, 0, 22),
+                                    Font = Enum.Font.GothamBold,
+                                    PlaceholderColor3 = Color3.fromRGB(255, 255, 255),
+                                    Text = tostring(min),
+                                    TextColor3 = Color3.fromRGB(255, 255, 255),
+                                    TextSize = 14.000,
+                                    TextWrapped = true,
+                                    TextXAlignment = Enum.TextXAlignment.Right,
+                                })
+                            else
+                                things.slideramount = lib:Create("TextLabel", {
+                                    BackgroundColor3 = Color3.fromRGB(21, 21, 26),
+                                    BackgroundTransparency = 1.000,
+                                    BorderColor3 = Color3.fromRGB(27, 42, 53),
+                                    BorderSizePixel = 0,
+                                    Position = UDim2.new(0, 444, 0, 6),
+                                    Size = UDim2.new(0, 48, 0, 22),
+                                    Font = Enum.Font.GothamBold,
+                                    Text = tostring(min),
+                                    TextColor3 = Color3.fromRGB(255, 255, 255),
+                                    TextSize = 14.000,
+                                    TextXAlignment = Enum.TextXAlignment.Right,
+                                })                                
+                            end
+                        end
 
                         sections.container.Size = sections.container.Size + UDim2.new(0,0,0,60)
                         sections.containerthings.Size = sections.containerthings.Size + UDim2.new(0,0,0,60)
@@ -618,10 +786,10 @@ function lib:CreateMain(projName)
                         things.sliderback.Parent = sections.containerthings
                         things.slidertext.Parent = things.sliderback
                         things.slider.Parent = things.slidertext
-                        things.slideramount.Parent = things.slidertext
+                        things.slideramount.Parent = things.sliderback
                         things.sliderinner.Parent = things.slider
 
-                        sections.containerthings.Position = UDim2.new(0, 0, 1, -sections.containerthings.Size.Y.Offset-6)
+                        sections.containerthings.Position = UDim2.new(0, 0, 0, sections.container.Size.Y.Offset-sections.containerthings.Size.Y.Offset-6)
 
                         things.value = 0
 
@@ -668,7 +836,7 @@ function lib:CreateMain(projName)
                             if Others.changablevalue then
                             things.slideramount:GetPropertyChangedSignal("Text"):Connect(function()
                                 if not moveconnection then  
-                                    things.slideramount.Text = string.gsub(things.slideramount.Text,"[^%-%d]","")
+                                    things.slideramount.Text = string.gsub(things.slideramount.Text,"[^%-%d%p]","")
                                     local value = tonumber(things.slideramount.Text)
                                     if value ~= nil and value >= min and value <= max then
                                         local new = value / max
@@ -702,6 +870,9 @@ function lib:CreateMain(projName)
                                 if things.slideramount.Text == "" then
                                     things.slideramount.Text = min
                                     things.value = min
+                                    if CallBack then
+                                        CallBack(things.value)
+                                    end
                                 end
                             end)
                             end
@@ -715,22 +886,23 @@ function lib:CreateMain(projName)
                         end
 
                         things.textboxb = lib:Create("ImageLabel", {
+                            Name = Name.."TextBox",
                             BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                             BackgroundTransparency = 1.000,
                             BorderSizePixel = 0,
-                            Size = UDim2.new(0, 480, 0, 35),
+                            Size = UDim2.new(0, 500, 0, 35),
                             Image = "rbxassetid://3570695787",
                             ImageColor3 = Color3.fromRGB(29, 29, 35),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.100,
+                            SliceScale = 0.040,
                         })
 
                         things.textboxtext = lib:Create("TextLabel", {
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
-                            Position = UDim2.new(0, 4, 0, 2),
-                            Size = UDim2.new(0, 200, 0, 30),
+                            Position = UDim2.new(0, 4, 0, 0),
+                            Size = UDim2.new(0, 280, 1, 0),
                             Font = Enum.Font.GothamBold,
                             Text = Name,
                             TextColor3 = Color3.fromRGB(255, 255, 255),
@@ -742,13 +914,13 @@ function lib:CreateMain(projName)
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
                             BorderSizePixel = 0,
-                            Position = UDim2.new(0, 292, 0, 2),
-                            Size = UDim2.new(0, 180, 0, 26),
+                            Position = UDim2.new(0, 291, 0, 4),
+                            Size = UDim2.new(0, 200, 0, 26),
                             Image = "rbxassetid://3570695787",
-                            ImageColor3 = Color3.fromRGB(20, 20, 20),
+                            ImageColor3 = Color3.fromRGB(21, 21, 26),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.080,
+                            SliceScale = 0.040,
                         })
 
                         things.textbox = lib:Create("TextBox", {
@@ -757,11 +929,11 @@ function lib:CreateMain(projName)
                             Position = UDim2.new(0.0500000007, 0, 0.0384615399, 0),
                             Size = UDim2.new(0.899999976, 0, 0.899999976, 0),
                             Font = Enum.Font.GothamBold,
-                            Text = things.value,
+                            PlaceholderText = things.value,
+                            Text = "",
                             TextColor3 = Color3.fromRGB(255, 255, 255),
                             TextSize = 14.000,
                             TextXAlignment = Enum.TextXAlignment.Left,
-                            ZIndex = 2,
                         })
 
                         sections.container.Size = sections.container.Size + UDim2.new(0,0,0,45)
@@ -773,29 +945,68 @@ function lib:CreateMain(projName)
                         things.textboxbb.Parent = things.textboxtext
                         things.textbox.Parent = things.textboxbb
 
-                        sections.containerthings.Position = UDim2.new(0, 0, 1, -sections.containerthings.Size.Y.Offset-6)
+                        sections.containerthings.Position = UDim2.new(0, 0, 0, sections.container.Size.Y.Offset-sections.containerthings.Size.Y.Offset-6)
                         
-						things.textbox.FocusLost:Connect(function()
+                        things.textbox.FocusLost:Connect(function()
+                            local old = things.value
+                            things.textbox.PlaceholderText = things.value
 							things.value = things.textbox.Text
 
                             if CallBack then
                                 CallBack(things.value)
                             end
                         end)
+                    elseif string.lower(Type) == "textlabel" then
+                        things.textlabelb = lib:Create("ImageLabel", {
+                            Name = "TextLabel",
+                            BackgroundColor3 = Color3.fromRGB(248, 248, 248),
+                            BackgroundTransparency = 1.000,
+                            BorderSizePixel = 0,
+                            Size = UDim2.new(0, 500, 0, 35),
+                            Image = "rbxassetid://3570695787",
+                            ImageColor3 = Color3.fromRGB(29, 29, 35),
+                            ScaleType = Enum.ScaleType.Slice,
+                            SliceCenter = Rect.new(100, 100, 100, 100),
+                            SliceScale = 0.040,
+                        })
+
+                        things.textlabeltext = lib:Create("TextLabel", {
+                            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                            BackgroundTransparency = 1.000,
+                            Position = UDim2.new(0, 4, 0, 0),
+                            Size = UDim2.new(0, 496, 1, 0),
+                            Font = Enum.Font.GothamBold,
+                            TextColor3 = Color3.fromRGB(255, 255, 255),
+                            TextSize = 18.000,
+                            TextXAlignment = Enum.TextXAlignment.Left,
+                        })
+                        if #Name <= 46 then
+                            things.textlabeltext.Text = Name
+                        end
+
+                        sections.container.Size = sections.container.Size + UDim2.new(0,0,0,45)
+                        sections.containerthings.Size = sections.containerthings.Size + UDim2.new(0,0,0,45)
+                        categories.scrollingframe.CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,45)
+
+                        things.textlabelb.Parent = sections.containerthings
+                        things.textlabeltext.Parent = things.textlabelb
+
+                        sections.containerthings.Position = UDim2.new(0, 0, 0, sections.container.Size.Y.Offset-sections.containerthings.Size.Y.Offset-6)
                     elseif string.lower(Type) == "keybind" then
                         things.keybindb = lib:Create("ImageLabel", {
+                            Name = "KeyBind",
                             Active = true,
                             BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                             BackgroundTransparency = 1.000,
                             BorderColor3 = Color3.fromRGB(27, 42, 53),
                             Position = UDim2.new(0, 11, 0, 80),
                             Selectable = true,
-                            Size = UDim2.new(0, 480, 0, 35),
+                            Size = UDim2.new(0, 500, 0, 35),
                             Image = "rbxassetid://3570695787",
                             ImageColor3 = Color3.fromRGB(29, 29, 35),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.080,
+                            SliceScale = 0.040,
                         })
                         things.keybindtext = lib:Create("TextLabel", {
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -813,25 +1024,25 @@ function lib:CreateMain(projName)
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
                             BorderSizePixel = 0,
-                            Position = UDim2.new(0, 375, 0, 2),
-                            Size = UDim2.new(0, 97, 0, 26),
+                            Position = UDim2.new(0, 370, 0, 2),
+                            Size = UDim2.new(0, 120, 0, 26),
                             AutoButtonColor = false,
                             Image = "rbxassetid://3570695787",
-                            ImageColor3 = Color3.fromRGB(20, 20, 20),
+                            ImageColor3 = Color3.fromRGB(21, 21, 26),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.080,
+                            SliceScale = 0.040,
                         })
                         things.keybindvalue = lib:Create("TextLabel", {
                             BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                             BackgroundTransparency = 1.000,
                             BorderSizePixel = 0,
-                            Position = UDim2.new(0.344246238, 0, 0, 0),
-                            Size = UDim2.new(0, 30, 1, 0),
+                            Position = UDim2.new(0.0942464173, 0, 0, 0),
+                            Size = UDim2.new(0.800000012, 0, 1, 0),
                             Font = Enum.Font.GothamBold,
-                            Text = "...",
+                            Text = "None",
                             TextColor3 = Color3.fromRGB(255, 255, 255),
-                            TextSize = 16
+                            TextSize = 16.000,
                         })
                         sections.container.Size = sections.container.Size + UDim2.new(0,0,0,45)
                         sections.containerthings.Size = sections.containerthings.Size + UDim2.new(0,0,0,45)
@@ -842,7 +1053,7 @@ function lib:CreateMain(projName)
                         things.keybind.Parent = things.keybindtext
                         things.keybindvalue.Parent = things.keybind
 
-                        sections.containerthings.Position = UDim2.new(0, 0, 1, -sections.containerthings.Size.Y.Offset-6)
+                        sections.containerthings.Position = UDim2.new(0, 0, 0, sections.container.Size.Y.Offset-sections.containerthings.Size.Y.Offset-6)
 
                         local c
                         local bind
@@ -860,13 +1071,15 @@ function lib:CreateMain(projName)
                                 if i.UserInputType.Name == "Keyboard" and i.KeyCode ~= Enum.KeyCode.Backspace then
                                     things.keybindvalue.Text = i.KeyCode.Name
                                     bind = i.KeyCode
+                                    wait(.1)
                                     if c then
                                         c:Disconnect()
                                         c = nil
                                     end
                                 elseif i.KeyCode == Enum.KeyCode.Backspace then
-                                    things.keybindvalue.Text = "..."
+                                    things.keybindvalue.Text = "None"
                                     bind = nil
+                                    wait(.1)
                                     if c then
                                         c:Disconnect()
                                         c = nil
@@ -883,39 +1096,95 @@ function lib:CreateMain(projName)
 							end
 						end)
                     elseif string.lower(Type) == "dropdown" then
-                        
                         if Others and not Others.search then
+
                             if Others then
-                                if Others.default then
+                                if Others.default and Others.options and not Others.playerlist then
                                     things.value = Others.default
-                                elseif not Other.default and Others.options then
+                                elseif Others.default and Others.options and Others.playerlist then
+                                    things.value = Others.default
+                                elseif not Others.default and Others.options and Others.playerlist then
                                     things.value = Others.options[1]
+                                elseif not Others.default and Others.options and not Others.playerlist then
+                                    things.value = Others.options[1]
+                                elseif not Others.default and not Others.options and Others.playerlist then
+                                    things.value = game:GetService("Players"):GetChildren()[1].Name  
+                                elseif Others.default and not Others.options and not Others.playerlist then
+                                    things.value = Others.default      
+                                elseif Others.default and not Others.options and Others.playerlist then
+                                    things.value = Others.default               
                                 end
                             end
-
                             local options
 
                             if Others then
-                                if Others.options then
+                                if Others.options and not Others.playerlist then
                                     options = Others.options
+                                elseif Others.options and Others.playerlist then
+                                    options = {}
+                                    
+                                    for g,f in pairs(Others.options) do
+                                       table.insert(options, f)
+                                    end
+                                    local list = game:GetService("Players"):GetChildren()
+                                    if not Others.plotlist then
+                                        for i,v in pairs(list) do
+                                            if v:IsA("Player") then
+                                                table.insert(options, v.Name)
+                                            end
+                                        end
+                                    else
+                                        for i,v in pairs(list) do
+                                            if v:IsA("Player") then
+                                                table.insert(options, v.Name)
+                                                table.insert(options, v.Name.."'s Plot")
+                                            end
+                                        end
+                                    end
+                                elseif not Others.options and Others.playerlist then
+                                    options = {}
+                                    local list = game:GetService("Players"):GetChildren()
+                                    for i,v in pairs(list) do
+                                        if v:IsA("Player") then
+                                            table.insert(options, v.Name)
+                                        end
+                                    end                                    
                                 end
-                            end 
+                            end
 
-                            things.dropdown = lib:Create("ImageButton", {
+                            things.dropdownb = lib:Create("ImageLabel", {
+                                Name = Name.."DropDown",
                                 BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                                 BackgroundTransparency = 1.000,
                                 BorderColor3 = Color3.fromRGB(27, 42, 53),
                                 Position = UDim2.new(0, 11, 0, 40),
-                                Size = UDim2.new(0, 480, 0, 30),
+                                Size = UDim2.new(0, 500, 0, 30),
+                                ImageTransparency = 1,
+                                Image = "rbxassetid://3570695787",
+                                ImageColor3 = Color3.fromRGB(29, 29, 35),
+                                ScaleType = Enum.ScaleType.Slice,
+                                SliceCenter = Rect.new(100, 100, 100, 100),
+                                SliceScale = 0.040,
+                            })
+                            things.dropdownb.ClipsDescendants = true
+
+                            things.dropdown = lib:Create("ImageButton", {
+                                Name = Name.."DropDown",
+                                BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                                BackgroundTransparency = 1.000,
+                                BorderColor3 = Color3.fromRGB(27, 42, 53),
+                                Position = UDim2.new(0, 0, 0, 0),
+                                Size = UDim2.new(0, 500, 0, 30),
                                 AutoButtonColor = false,
                                 Image = "rbxassetid://3570695787",
                                 ImageColor3 = Color3.fromRGB(29, 29, 35),
                                 ScaleType = Enum.ScaleType.Slice,
                                 SliceCenter = Rect.new(100, 100, 100, 100),
-                                SliceScale = 0.080,
+                                SliceScale = 0.040,
                             })
 
                             things.arrow = lib:Create("ImageLabel", {
+                                Name = "Arrow",
                                 Active = true,
                                 BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                                 BackgroundTransparency = 1.000,
@@ -925,37 +1194,38 @@ function lib:CreateMain(projName)
                                 Rotation = 90.000,
                                 Selectable = true,
                                 Size = UDim2.new(0, 28, 0, 28),
-                                Image = "http://www.roblox.com/asset/?id=5053304305",
+                                Image = "http://www.roblox.com/asset/?id=5054982349",
                             })
 
                             things.selected = lib:Create("TextLabel", {
-                                BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                                Active = false,
+                                BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                                 BackgroundTransparency = 1.000,
                                 BorderSizePixel = 0,
-                                Position = UDim2.new(0.300000012, 0, 0, 0),
-                                Size = UDim2.new(0, 200, 1, 0),
+                                Position = UDim2.new(0, 4, 0, 0),
+                                Selectable = false,
+                                Size = UDim2.new(0.200000003, 200, 1, 0),
                                 Font = Enum.Font.GothamBold,
                                 Text = tostring(things.value),
                                 TextColor3 = Color3.fromRGB(255, 255, 255),
                                 TextSize = 18.000,
+                                TextXAlignment = Enum.TextXAlignment.Left,
                             })
 
                             things.listb = lib:Create("ImageLabel", {
-                                Visible = false,
                                 Active = true,
                                 BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                                 BackgroundTransparency = 1.000,
                                 BorderColor3 = Color3.fromRGB(27, 42, 53),
-                                Position = UDim2.new(0, 0, 0, 33),
+                                Position = UDim2.new(0, 0, 0, 40),
                                 Selectable = true,
-                                Size = UDim2.new(0, 480, 0, 120),
+                                Size = UDim2.new(0, 500, 0, 120),
                                 ZIndex = 2,
                                 Image = "rbxassetid://3570695787",
-                                ImageColor3 = Color3.fromRGB(29, 29, 35),
-                                ImageTransparency = 0.100,
+                                ImageColor3 = Color3.fromRGB(34, 34, 41),
                                 ScaleType = Enum.ScaleType.Slice,
                                 SliceCenter = Rect.new(100, 100, 100, 100),
-                                SliceScale = 0.080,
+                                SliceScale = 0.040,
                             })
                             things.list = lib:Create("ScrollingFrame", {
                                 Active = true,
@@ -964,24 +1234,33 @@ function lib:CreateMain(projName)
                                 BorderSizePixel = 0,
                                 Size = UDim2.new(1, 0, 1, 0),
                                 ZIndex = 2,
-                                ScrollBarThickness = 4,
-                                ScrollBarImageColor3 = Color3.fromRGB(0,0,0),
-                                CanvasSize = UDim2.new(1,0,1,0)
+                                CanvasSize = UDim2.new(0, 0, 0, 0),
+                                ScrollBarThickness = 0,
                             })
 
                             local tlistlayout = lib:Create("UIListLayout", {
                                 SortOrder = Enum.SortOrder.LayoutOrder,
-                                Padding = UDim.new(0, 0)
+                                Padding = UDim.new(0, 10)
                             })
 
                             tlistlayout.Parent = things.list
                             tlistlayout = nil
 
+                            local tpadding = lib:Create("UIPadding", {
+                                PaddingBottom = UDim.new(0, 10),
+                                PaddingLeft = UDim.new(0, 10),
+                                PaddingTop = UDim.new(0, 10),
+                            })
+
+                            tpadding.Parent = things.list
+                            tpadding = nil
+
                             sections.container.Size = sections.container.Size + UDim2.new(0,0,0,40)
                             sections.containerthings.Size = sections.containerthings.Size + UDim2.new(0,0,0,40)
                             categories.scrollingframe.CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,40)
-
-                            things.dropdown.Parent = sections.containerthings
+                            
+                            things.dropdownb.Parent = sections.containerthings
+                            things.dropdown.Parent = things.dropdownb
                             things.arrow.Parent = things.dropdown
                             things.selected.Parent = things.dropdown
                             things.listb.Parent = things.dropdown
@@ -989,30 +1268,38 @@ function lib:CreateMain(projName)
 
                             things.dropdownopen = false
 
-                            sections.containerthings.Position = UDim2.new(0, 0, 1, -sections.containerthings.Size.Y.Offset-6)
+                            sections.containerthings.Position = UDim2.new(0, 0, 0, sections.container.Size.Y.Offset-sections.containerthings.Size.Y.Offset-6)
+                            local function refreshlist()
+
+                                for i,v in next, things.list:GetChildren() do
+                                    if v:IsA("ImageButton") then
+                                        v:Destroy()
+                                    end
+                                end
 
                                 for i,v in next, options do
                                     local button = lib:Create("ImageButton", {
+                                        AnchorPoint = Vector2.new(0.5, 0.5),
                                         BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                                         BackgroundTransparency = 1.000,
                                         BorderColor3 = Color3.fromRGB(27, 42, 53),
+                                        Position = UDim2.new(0, 252, 0, 0),
                                         Size = UDim2.new(0, 480, 0, 30),
                                         ZIndex = 2,
                                         AutoButtonColor = false,
                                         Image = "rbxassetid://3570695787",
                                         ImageColor3 = Color3.fromRGB(29, 29, 35),
-                                        ImageTransparency = 0.900,
                                         ScaleType = Enum.ScaleType.Slice,
                                         SliceCenter = Rect.new(100, 100, 100, 100),
-                                        SliceScale = 0.080,
+                                        SliceScale = 0.040,
                                     })
 
                                     local buttontext = lib:Create("TextLabel", {
                                         BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                                         BackgroundTransparency = 1.000,
                                         BorderSizePixel = 0,
-                                        Position = UDim2.new(0.300000012, 0, 0, 0),
-                                        Size = UDim2.new(0, 200, 1, 0),
+                                        Position = UDim2.new(0.5, -200, 0, 0),
+                                        Size = UDim2.new(0, 400, 1, 0),
                                         ZIndex = 2,
                                         Font = Enum.Font.GothamBold,
                                         Text = v,
@@ -1025,16 +1312,23 @@ function lib:CreateMain(projName)
 
                                     button.MouseButton1Click:Connect(function()
                                         if things.dropdownopen then
+
                                             things.dropdownopen = not things.dropdownopen
                                             things.selected.Text = v
                                             things.value = v
 
-                                            if things.dropdownopen then 
-                                                things.listb.Visible = true
+                                            if things.dropdownopen then
+                                                refreshlist()
+                                                game:GetService("TweenService"):Create(sections.container, TweenInfo.new(0.1), {Size = sections.container.Size + UDim2.new(0,0,0,130)}):Play()
+                                                game:GetService("TweenService"):Create(things.dropdownb, TweenInfo.new(0.1), {Size = UDim2.new(0,500,0,154)}):Play()
+                                                game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.1), {CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,124)}):Play()
+                                                game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y) + UDim2.new(0,0,0,26)}):Play()
                                                 game:GetService("TweenService"):Create(things.arrow, TweenInfo.new(0.1), {Rotation = 0}):Play()
-                                                game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y)}):Play()
                                             else
-                                                things.listb.Visible = false
+                                                refreshlist()
+                                                game:GetService("TweenService"):Create(sections.container, TweenInfo.new(0.1), {Size = sections.container.Size - UDim2.new(0,0,0,130)}):Play()
+                                                game:GetService("TweenService"):Create(things.dropdownb, TweenInfo.new(0.1), {Size = UDim2.new(0, 500,0,30)}):Play()
+                                                game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.1), {CanvasSize = categories.scrollingframe.CanvasSize - UDim2.new(0,0,0,124)}):Play()
                                                 game:GetService("TweenService"):Create(things.arrow, TweenInfo.new(0.1), {Rotation = 90}):Play()
                                             end
 
@@ -1044,52 +1338,157 @@ function lib:CreateMain(projName)
                                         end
                                     end)
                                 end
+                            end
+
+                            refreshlist()
 
                             things.dropdown.MouseButton1Click:Connect(function()
                                 things.dropdownopen = not things.dropdownopen
 
-                                if things.dropdownopen then 
-                                    things.listb.Visible = true
+                                if Others then
+                                    if Others.options and not Others.playerlist then
+                                        options = Others.options
+                                    elseif Others.options and Others.playerlist then
+                                        options = {}
+                                        
+                                        for g,f in pairs(Others.options) do
+                                           table.insert(options, f)
+                                        end
+                                        local list = game:GetService("Players"):GetChildren()
+                                        if not Others.plotlist then
+                                            for i,v in pairs(list) do
+                                                if v:IsA("Player") then
+                                                    table.insert(options, v.Name)
+                                                end
+                                            end
+                                        else
+                                            for i,v in pairs(list) do
+                                                if v:IsA("Player") then
+                                                    table.insert(options, v.Name)
+                                                    
+                                                    table.insert(options, v.Name.."'s Plot")
+                                                end
+                                            end
+                                        end
+                                    elseif not Others.options and Others.playerlist then
+                                        options = {}
+                                        local list = game:GetService("Players"):GetChildren()
+                                        for i,v in pairs(list) do
+                                            if v:IsA("Player") then
+                                                table.insert(options, v.Name)
+                                            end
+                                        end                                    
+                                    end
+                                end
+
+
+                                if things.dropdownopen then
+                                    refreshlist()
+                                    game:GetService("TweenService"):Create(sections.container, TweenInfo.new(0.1), {Size = sections.container.Size + UDim2.new(0,0,0,130)}):Play()
+                                    game:GetService("TweenService"):Create(things.dropdownb, TweenInfo.new(0.1), {Size = UDim2.new(0,500,0,154)}):Play()
+                                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.1), {CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,124)}):Play()
+                                    game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y) + UDim2.new(0,0,0,26)}):Play()
                                     game:GetService("TweenService"):Create(things.arrow, TweenInfo.new(0.1), {Rotation = 0}):Play()
-                                    game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y)}):Play()
                                 else
-                                    things.listb.Visible = false
+                                    refreshlist()
+                                    game:GetService("TweenService"):Create(sections.container, TweenInfo.new(0.1), {Size = sections.container.Size - UDim2.new(0,0,0,130)}):Play()
+                                    game:GetService("TweenService"):Create(things.dropdownb, TweenInfo.new(0.1), {Size = UDim2.new(0, 500,0,30)}):Play()
+                                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.1), {CanvasSize = categories.scrollingframe.CanvasSize - UDim2.new(0,0,0,124)}):Play()
                                     game:GetService("TweenService"):Create(things.arrow, TweenInfo.new(0.1), {Rotation = 90}):Play()
                                 end
                                 
                             end)
                         elseif Others and Others.search then
+
                             if Others then
-                                if Others.default then
+                                if Others.default and Others.options and not Others.playerlist then
                                     things.value = Others.default
-                                elseif not Others.default and Others.options then
+                                elseif Others.default and Others.options and Others.playerlist then
+                                    things.value = Others.default
+                                elseif not Others.default and Others.options and Others.playerlist then
                                     things.value = Others.options[1]
+                                elseif not Others.default and Others.options and not Others.playerlist then
+                                    things.value = Others.options[1]
+                                elseif not Others.default and not Others.options and Others.playerlist then
+                                    things.value = game:GetService("Players"):GetChildren()[1].Name  
+                                elseif Others.default and not Others.options and not Others.playerlist then
+                                    things.value = Others.default      
+                                elseif Others.default and not Others.options and Others.playerlist then
+                                    things.value = Others.default               
                                 end
                             end
 
                             local options
 
                             if Others then
-                                if Others.options then
+                                if Others.options and not Others.playerlist then
                                     options = Others.options
+                                elseif Others.options and Others.playerlist then
+                                    options = {}
+                                    
+                                    for g,f in pairs(Others.options) do
+                                       table.insert(options, f)
+                                    end
+                                    local list = game:GetService("Players"):GetChildren()
+                                    if not Others.plotlist then
+                                        for i,v in pairs(list) do
+                                            if v:IsA("Player") then
+                                                table.insert(options, v.Name)
+                                            end
+                                        end
+                                    else
+                                        for i,v in pairs(list) do
+                                            if v:IsA("Player") then
+                                                table.insert(options, v.Name)
+                                                
+                                                table.insert(options, v.Name.."'s Plot")
+                                            end
+                                        end
+                                    end
+                                elseif not Others.options and Others.playerlist then
+                                    options = {}
+                                    local list = game:GetService("Players"):GetChildren()
+                                    for i,v in pairs(list) do
+                                        if v:IsA("Player") then
+                                            table.insert(options, v.Name)
+                                        end
+                                    end                                    
                                 end
                             end
 
-                            things.dropdown = lib:Create("ImageButton", {
+                            things.dropdownb = lib:Create("ImageLabel", {
+                                Name = Name.."DropDown",
                                 BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                                 BackgroundTransparency = 1.000,
                                 BorderColor3 = Color3.fromRGB(27, 42, 53),
                                 Position = UDim2.new(0, 11, 0, 40),
-                                Size = UDim2.new(0, 480, 0, 30),
+                                Size = UDim2.new(0, 500, 0, 30),
+                                ImageTransparency = 1,
+                                Image = "rbxassetid://3570695787",
+                                ImageColor3 = Color3.fromRGB(29, 29, 35),
+                                ScaleType = Enum.ScaleType.Slice,
+                                SliceCenter = Rect.new(100, 100, 100, 100),
+                                SliceScale = 0.040,
+                            })
+                            things.dropdownb.ClipsDescendants = true
+
+                            things.dropdown = lib:Create("ImageButton", {
+                                Name = Name.."DropDown",
+                                BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                                BackgroundTransparency = 1.000,
+                                BorderColor3 = Color3.fromRGB(27, 42, 53),
+                                Position = UDim2.new(0, 0, 0, 0),
+                                Size = UDim2.new(0, 500, 0, 30),
                                 AutoButtonColor = false,
                                 Image = "rbxassetid://3570695787",
                                 ImageColor3 = Color3.fromRGB(29, 29, 35),
                                 ScaleType = Enum.ScaleType.Slice,
                                 SliceCenter = Rect.new(100, 100, 100, 100),
-                                SliceScale = 0.080,
+                                SliceScale = 0.040,
                             })
 
                             things.arrow = lib:Create("ImageLabel", {
+                                Name = "Arrow",
                                 Active = true,
                                 BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                                 BackgroundTransparency = 1.000,
@@ -1099,7 +1498,7 @@ function lib:CreateMain(projName)
                                 Rotation = 90.000,
                                 Selectable = true,
                                 Size = UDim2.new(0, 28, 0, 28),
-                                Image = "http://www.roblox.com/asset/?id=5053304305",
+                                Image = "http://www.roblox.com/asset/?id=5054982349",
                             })
 
                             things.selected = lib:Create("TextBox", {
@@ -1107,31 +1506,30 @@ function lib:CreateMain(projName)
                                 BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                                 BackgroundTransparency = 1.000,
                                 BorderSizePixel = 0,
-                                Position = UDim2.new(0.300000012, 0, 0, 0),
+                                Position = UDim2.new(0, 4, 0, 0),
                                 Selectable = false,
-                                Size = UDim2.new(0, 200, 1, 0),
+                                Size = UDim2.new(0.200000003, 200, 1, 0),
                                 Font = Enum.Font.GothamBold,
                                 Text = tostring(things.value),
                                 TextColor3 = Color3.fromRGB(255, 255, 255),
                                 TextSize = 18.000,
+                                TextXAlignment = Enum.TextXAlignment.Left,
                             })
 
                             things.listb = lib:Create("ImageLabel", {
-                                Visible = false,
                                 Active = true,
                                 BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                                 BackgroundTransparency = 1.000,
                                 BorderColor3 = Color3.fromRGB(27, 42, 53),
-                                Position = UDim2.new(0, 0, 0, 33),
+                                Position = UDim2.new(0, 0, 0, 40),
                                 Selectable = true,
-                                Size = UDim2.new(0, 480, 0, 120),
+                                Size = UDim2.new(0, 500, 0, 120),
                                 ZIndex = 2,
                                 Image = "rbxassetid://3570695787",
-                                ImageColor3 = Color3.fromRGB(29, 29, 35),
-                                ImageTransparency = 0.100,
+                                ImageColor3 = Color3.fromRGB(34, 34, 41),
                                 ScaleType = Enum.ScaleType.Slice,
                                 SliceCenter = Rect.new(100, 100, 100, 100),
-                                SliceScale = 0.080,
+                                SliceScale = 0.040,
                             })
                             things.list = lib:Create("ScrollingFrame", {
                                 Active = true,
@@ -1140,24 +1538,33 @@ function lib:CreateMain(projName)
                                 BorderSizePixel = 0,
                                 Size = UDim2.new(1, 0, 1, 0),
                                 ZIndex = 2,
-                                ScrollBarThickness = 4,
-                                ScrollBarImageColor3 = Color3.fromRGB(0,0,0),
-                                CanvasSize = UDim2.new(1,0,1,0)
+                                CanvasSize = UDim2.new(0, 0, 0, 0),
+                                ScrollBarThickness = 0,
                             })
 
                             local tlistlayout = lib:Create("UIListLayout", {
                                 SortOrder = Enum.SortOrder.LayoutOrder,
-                                Padding = UDim.new(0, 0)
+                                Padding = UDim.new(0, 10)
                             })
 
                             tlistlayout.Parent = things.list
                             tlistlayout = nil
 
+                            local tpadding = lib:Create("UIPadding", {
+                                PaddingBottom = UDim.new(0, 10),
+                                PaddingLeft = UDim.new(0, 10),
+                                PaddingTop = UDim.new(0, 10),
+                            })
+
+                            tpadding.Parent = things.list
+                            tpadding = nil
+
                             sections.container.Size = sections.container.Size + UDim2.new(0,0,0,40)
                             sections.containerthings.Size = sections.containerthings.Size + UDim2.new(0,0,0,40)
                             categories.scrollingframe.CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,40)
-
-                            things.dropdown.Parent = sections.containerthings
+                            
+                            things.dropdownb.Parent = sections.containerthings
+                            things.dropdown.Parent = things.dropdownb
                             things.arrow.Parent = things.dropdown
                             things.selected.Parent = things.dropdown
                             things.listb.Parent = things.dropdown
@@ -1165,31 +1572,39 @@ function lib:CreateMain(projName)
 
                             things.dropdownopen = false
 
-                            sections.containerthings.Position = UDim2.new(0, 0, 1, -sections.containerthings.Size.Y.Offset-6)
+                            sections.containerthings.Position = UDim2.new(0, 0, 0, sections.container.Size.Y.Offset-sections.containerthings.Size.Y.Offset-6)
+                            local function refreshlist()
+
+                                for i,v in next, things.list:GetChildren() do
+                                    if v:IsA("ImageButton") then
+                                        v:Destroy()
+                                    end
+                                end
 
                                 for i,v in next, options do
                                     local button = lib:Create("ImageButton", {
                                         Name = string.lower(v),
+                                        AnchorPoint = Vector2.new(0.5, 0.5),
                                         BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                                         BackgroundTransparency = 1.000,
                                         BorderColor3 = Color3.fromRGB(27, 42, 53),
+                                        Position = UDim2.new(0, 252, 0, 0),
                                         Size = UDim2.new(0, 480, 0, 30),
                                         ZIndex = 2,
                                         AutoButtonColor = false,
                                         Image = "rbxassetid://3570695787",
                                         ImageColor3 = Color3.fromRGB(29, 29, 35),
-                                        ImageTransparency = 0.900,
                                         ScaleType = Enum.ScaleType.Slice,
                                         SliceCenter = Rect.new(100, 100, 100, 100),
-                                        SliceScale = 0.080,
+                                        SliceScale = 0.040,
                                     })
 
                                     local buttontext = lib:Create("TextLabel", {
                                         BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                                         BackgroundTransparency = 1.000,
                                         BorderSizePixel = 0,
-                                        Position = UDim2.new(0.300000012, 0, 0, 0),
-                                        Size = UDim2.new(0, 200, 1, 0),
+                                        Position = UDim2.new(0.5, -200, 0, 0),
+                                        Size = UDim2.new(0, 400, 1, 0),
                                         ZIndex = 2,
                                         Font = Enum.Font.GothamBold,
                                         Text = v,
@@ -1202,16 +1617,25 @@ function lib:CreateMain(projName)
 
                                     button.MouseButton1Click:Connect(function()
                                         if things.dropdownopen then
+
                                             things.dropdownopen = not things.dropdownopen
                                             things.selected.Text = v
                                             things.value = v
 
-                                            if things.dropdownopen then 
-                                                things.listb.Visible = true
+                                            if things.dropdownopen then
+                                                
+                                                refreshlist()
+                                                game:GetService("TweenService"):Create(sections.container, TweenInfo.new(0.1), {Size = sections.container.Size + UDim2.new(0,0,0,130)}):Play()
+                                                game:GetService("TweenService"):Create(things.dropdownb, TweenInfo.new(0.1), {Size = UDim2.new(0,500,0,154)}):Play()
+                                                game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.1), {CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,124)}):Play()
+                                                game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y) + UDim2.new(0,0,0,26)}):Play()
                                                 game:GetService("TweenService"):Create(things.arrow, TweenInfo.new(0.1), {Rotation = 0}):Play()
-                                                game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y)}):Play()
                                             else
-                                                things.listb.Visible = false
+                                                
+                                                refreshlist()
+                                                game:GetService("TweenService"):Create(sections.container, TweenInfo.new(0.1), {Size = sections.container.Size - UDim2.new(0,0,0,130)}):Play()
+                                                game:GetService("TweenService"):Create(things.dropdownb, TweenInfo.new(0.1), {Size = UDim2.new(0, 500,0,30)}):Play()
+                                                game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.1), {CanvasSize = categories.scrollingframe.CanvasSize - UDim2.new(0,0,0,124)}):Play()
                                                 game:GetService("TweenService"):Create(things.arrow, TweenInfo.new(0.1), {Rotation = 90}):Play()
                                             end
 
@@ -1221,28 +1645,75 @@ function lib:CreateMain(projName)
                                         end
                                     end)
                                 end
+                            end
+
+                            refreshlist()
 
                             things.dropdown.MouseButton1Click:Connect(function()
                                 things.dropdownopen = not things.dropdownopen
 
-                                if things.dropdownopen then 
-                                    things.listb.Visible = true
+                                if Others then
+                                    if Others.options and not Others.playerlist then
+                                        options = Others.options
+                                    elseif Others.options and Others.playerlist then
+                                        options = {}
+                                        
+                                        for g,f in pairs(Others.options) do
+                                           table.insert(options, f)
+                                        end
+                                        local list = game:GetService("Players"):GetChildren()
+                                        if not Others.plotlist then
+                                            for i,v in pairs(list) do
+                                                if v:IsA("Player") then
+                                                    table.insert(options, v.Name)
+                                                end
+                                            end
+                                        else
+                                            for i,v in pairs(list) do
+                                                if v:IsA("Player") then
+                                                    table.insert(options, v.Name)
+                                                    
+                                                    table.insert(options, v.Name.."'s Plot")
+                                                end
+                                            end
+                                        end
+                                    elseif not Others.options and Others.playerlist then
+                                        options = {}
+                                        local list = game:GetService("Players"):GetChildren()
+                                        for i,v in pairs(list) do
+                                            if v:IsA("Player") then
+                                                table.insert(options, v.Name)
+                                            end
+                                        end                                    
+                                    end
+                                end
+
+
+                                if things.dropdownopen then
+                                    
+                                    refreshlist()
+                                    game:GetService("TweenService"):Create(sections.container, TweenInfo.new(0.1), {Size = sections.container.Size + UDim2.new(0,0,0,130)}):Play()
+                                    game:GetService("TweenService"):Create(things.dropdownb, TweenInfo.new(0.1), {Size = UDim2.new(0,500,0,154)}):Play()
+                                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.1), {CanvasSize = categories.scrollingframe.CanvasSize + UDim2.new(0,0,0,124)}):Play()
+                                    game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y) + UDim2.new(0,0,0,26)}):Play()
                                     game:GetService("TweenService"):Create(things.arrow, TweenInfo.new(0.1), {Rotation = 0}):Play()
-                                    game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y)}):Play()
                                 else
-                                    things.listb.Visible = false
+                                    
+                                    refreshlist()
+                                    game:GetService("TweenService"):Create(sections.container, TweenInfo.new(0.1), {Size = sections.container.Size - UDim2.new(0,0,0,130)}):Play()
+                                    game:GetService("TweenService"):Create(things.dropdownb, TweenInfo.new(0.1), {Size = UDim2.new(0, 500,0,30)}):Play()
+                                    game:GetService("TweenService"):Create(categories.scrollingframe, TweenInfo.new(0.1), {CanvasSize = categories.scrollingframe.CanvasSize - UDim2.new(0,0,0,124)}):Play()
                                     game:GetService("TweenService"):Create(things.arrow, TweenInfo.new(0.1), {Rotation = 90}):Play()
                                 end
                                 
                             end)
 
-                            
-                            local search = {}
+                            wait(.2)
 
-                            for i,v in pairs(things.list:GetChildren()) do
-                                if v:IsA("ImageButton") then
-                                    table.insert(search, tostring(v.Name))
-                                end
+                            local searchtable = {}
+
+                            for i,v in pairs(options) do
+                                table.insert(searchtable, string.lower(v))
                             end
 
                             local Found = {}
@@ -1252,7 +1723,7 @@ function lib:CreateMain(projName)
                                     Found[i] = nil
                                 end
                                 for i,v in pairs(things.list:GetChildren()) do
-                                    if not v:IsA("UIListLayout") then
+                                    if not v:IsA("UIListLayout") and not v:IsA("UIPadding") then
                                         v.Visible = false
                                     end
                                 end
@@ -1260,7 +1731,7 @@ function lib:CreateMain(projName)
                             end
 
                             function Search()
-                                for i,v in pairs(search) do
+                                for i,v in pairs(searchtable) do
                                     if string.find(v, things.selected.Text) then
                                         table.insert(Found, v)
                                     end
@@ -1275,16 +1746,17 @@ function lib:CreateMain(projName)
                                 local Results = {}
                                 local num
                                 for a,b in pairs(things.list:GetChildren()) do
-                                    if not b:IsA("UIListLayout") and b.Visible == true then
+                                    if not b:IsA("UIListLayout") and not b:IsA("UIPadding") and b.Visible == true then
                                         table.insert(Results, b)
                                         for c,d in pairs(Results) do
                                             num = c
+                                            howmany = c
                                         end
                                     end
                                 end
                                 if num ~= nil then
                                     pcall(function()
-                                        num = num/4
+                                        num = num/10
                                     end)
                                     things.list.CanvasSize = UDim2.new(0, 0, num, 0)
                                     num = 0
@@ -1299,14 +1771,14 @@ function lib:CreateMain(projName)
                                 end
                                 if things.selected.Text == "" then
                                     Nil()
-                                    things.list.CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y)
+                                    game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y) + UDim2.new(0,0,0,26)}):Play()
                                 end
                             end)
 
                             function Nil()
                                 for i,v in pairs(things.list:GetChildren()) do
-                                    if not v:IsA("UIListLayout") and v.Visible == false then
-                                        things.list.CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y)
+                                    if not v:IsA("UIListLayout") and not v:IsA("UIPadding") and v.Visible == false then
+                                        game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y) + UDim2.new(0,0,0,26)}):Play()
                                         v.Visible = true
                                     end 
                                 end
@@ -1315,38 +1787,31 @@ function lib:CreateMain(projName)
                             things.selected.FocusLost:connect(function()
                                 SearchLock = true
                                 if things.selected.Text == "" then
-                                    things.list.CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y)
+                                    game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y) + UDim2.new(0,0,0,26)}):Play()
                                     SearchLock = true
                                     Nil()
+                                    
                                     things.selected.Text = "Search..."
                                 end
                             end)
 
                             things.selected.Focused:connect(function()
                                 SearchLock = false
-                                things.dropdownopen = true
-
-                                if things.dropdownopen then 
-                                    things.listb.Visible = true
-                                    game:GetService("TweenService"):Create(things.arrow, TweenInfo.new(0.1), {Rotation = 0}):Play()
-                                    game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y)}):Play()
-                                end
+                            
                             end)
                         end
                     elseif string.lower(Type) == "colorpicker" then
-                        things.colorpickerb = lib:Create("ImageLabel", {
-                            Active = true,
+                        things.colorpickerb = lib:Create("ImageButton", {
                             BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                             BackgroundTransparency = 1.000,
                             BorderColor3 = Color3.fromRGB(27, 42, 53),
                             Position = UDim2.new(0, 11, 0, 125),
-                            Selectable = true,
-                            Size = UDim2.new(0, 480, 0, 35),
+                            Size = UDim2.new(0, 500, 0, 35),
                             Image = "rbxassetid://3570695787",
                             ImageColor3 = Color3.fromRGB(29, 29, 35),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.080,
+                            SliceScale = 0.040,
                         })
 
                         things.colorpickertext = lib:Create("TextLabel", {
@@ -1361,26 +1826,36 @@ function lib:CreateMain(projName)
                             TextSize = 18.000,
                             TextXAlignment = Enum.TextXAlignment.Left,
                         })
-                        things.colorpickerbutton = lib:Create("ImageButton", {
-                            BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                        things.colorpickerbutton = lib:Create("ImageLabel", {
+                            Active = true,
+                            BackgroundColor3 = Color3.fromRGB(248, 248, 248),
                             BackgroundTransparency = 1.000,
                             BorderSizePixel = 0,
-                            Position = UDim2.new(0, 416, 0, 2),
-                            Size = UDim2.new(0, 56, 0, 26),
-                            AutoButtonColor = false,
+                            Position = UDim2.new(0, 420, 0, 2),
+                            Selectable = true,
+                            Size = UDim2.new(0, 70, 0, 26),
                             Image = "rbxassetid://3570695787",
                             ImageColor3 = Color3.fromRGB(255, 0, 4),
                             ScaleType = Enum.ScaleType.Slice,
                             SliceCenter = Rect.new(100, 100, 100, 100),
-                            SliceScale = 0.080,
+                            SliceScale = 0.040,
                         })
 
-                        things.colorpickerframe = lib:Create("Frame", {
+                        things.colorpickerframeb = lib:Create("Frame", {
                             Name = "colorframe",
                             BackgroundColor3 = Color3.fromRGB(46, 46, 54),
                             BorderSizePixel = 0,
                             Position = UDim2.new(0, 708, 0, 0),
-                            Size = UDim2.new(0, 0, 0, 205),                            
+                            Size = UDim2.new(0, 0, 0, 205),
+                            BackgroundTransparency = 1,
+                        })
+                        things.colorpickerframeb.ClipsDescendants = true
+
+                        things.colorpickerframe = lib:Create("Frame", {
+                            BackgroundColor3 = Color3.fromRGB(46, 46, 54),
+                            BorderSizePixel = 0,
+                            Position = UDim2.new(0, 0, 0, 0),
+                            Size = UDim2.new(0, 190, 0, 205),                            
                         })
                         things.colorpickerframe.ClipsDescendants = true
 
@@ -1640,7 +2115,9 @@ function lib:CreateMain(projName)
                             SliceScale = 0.040,
                         })
 
-                        things.colorpickerframe.Parent = objects.Motherframe
+
+                        things.colorpickerframeb.Parent = objects.Motherframe
+                        things.colorpickerframe.Parent = things.colorpickerframeb
                         things.colorpickerupline.Parent = things.colorpickerframe
                         things.colorpickeruplinegradient.Parent = things.colorpickerupline
                         things.rback.Parent = things.colorpickerframe
@@ -1675,9 +2152,9 @@ function lib:CreateMain(projName)
 
                         things.colorpickeropen = false
                         
-                        sections.containerthings.Position = UDim2.new(0, 0, 1, -sections.containerthings.Size.Y.Offset-6)
+                        sections.containerthings.Position = UDim2.new(0, 0, 0, sections.container.Size.Y.Offset-sections.containerthings.Size.Y.Offset-6)
 
-                        things.colorpickerbutton.MouseButton1Click:Connect(function()
+                        things.colorpickerb.MouseButton1Click:Connect(function()
                             things.colorpickeropen = not things.colorpickeropen
 
                             for i,v in pairs(objects.Motherframe:GetChildren()) do
@@ -1687,7 +2164,7 @@ function lib:CreateMain(projName)
                             end
 
                             if things.colorpickeropen then 
-                                game:GetService("TweenService"):Create(things.colorpickerframe, TweenInfo.new(0.3), {Size = UDim2.new(0, 190, 0, 205)}):Play()
+                                game:GetService("TweenService"):Create(things.colorpickerframeb, TweenInfo.new(0.3), {Size = UDim2.new(0, 190, 0, 205)}):Play()
                             end
                         end)
 
@@ -1724,14 +2201,18 @@ function lib:CreateMain(projName)
                             things.rvalue.Text = tostring(math.floor(colourPickColour.r * 255))
                             things.gvalue.Text = tostring(math.floor(colourPickColour.g * 255))
                             things.bvalue.Text = tostring(math.floor(colourPickColour.b * 255))
-                            
-                            things.value = colourPickColour
+
+                            local rv = tonumber(things.rvalue.Text)
+                            local gv = tonumber(things.gvalue.Text)
+                            local bv = tonumber(things.bvalue.Text)
+
+                            things.value = Color3.new(rv,gv,bv)
+
+                            things.colorpickerbutton.ImageColor3 = colourPickColour
 
                             if CallBack then
                                 CallBack(things.value)
                             end
-
-                            things.colorpickerbutton.ImageColor3 = colourPickColour
                         end
 
                         if Others then
@@ -1739,6 +2220,7 @@ function lib:CreateMain(projName)
                                 local r,g,b = math.floor(Others.default.r * 255),math.floor(Others.default.g * 255),math.floor(Others.default.b * 255)
                                 colorbase = Color3.fromRGB(r,g,b)
                                 things.sat.ImageColor3 = colorbase
+                                wait(.2)
                                 UpdateColorPicker()
                             end
                         end
@@ -1782,6 +2264,8 @@ function lib:CreateMain(projName)
                             end
                         end)
 
+                        local rainbow = false
+
                         things.rainbow.MouseButton1Down:Connect(function()
                             if not rainbow then 
                                 rc = game:GetService("RunService").Heartbeat:Connect(function()
@@ -1800,7 +2284,6 @@ function lib:CreateMain(projName)
                         end)
 
                         local function zigzag(X) return math.acos(math.cos(X*math.pi))/math.pi end
-                        local rainbow = false
                         things.rainbowtoggle.MouseButton1Click:Connect(function()
                             rainbow = not rainbow
                             if rainbow then 
