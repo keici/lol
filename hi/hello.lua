@@ -15,6 +15,10 @@ poop.Carti = {
     Camera = workspace.CurrentCamera
 }
 
+poop.Yo = {
+    chatremote = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+}
+
 poop.links = {
     tr = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=",
     detlan = "https://translate.yandex.net/api/v1.5/tr.json/detect?key=",
@@ -27,7 +31,7 @@ poop.languages = {afrikaans = "af",albanian = "sq",amharic = "am",arabic = "ar",
 poop.languagelist = {}
 
 for i,v in pairs(poop.languages) do
-    table.insert(poop.languagelist, i)
+    poop.languagelist[i] = true
 end
 
 poop.getsenvv = function(scr) -- script.Disabled meme
@@ -57,7 +61,8 @@ poop.misc = poop.main:CreateCategory("Misc") -- misc
 poop.chats = poop.misc:CreateSection("Chat")
 poop.chats:Create("Toggle", "Enable", function(state) poop.settings.ChatEnabled = state end)
 poop.chats:Create("Dropdown", "Language", function(val) poop.settings.ChatLanguage = poop.languages[val] end, {options = poop.languagelist})
-
+poop.chats:Create("Textbox", "Message", function(val) if poop.settings.ChatEnabled then poop.Yo.chatremote:FireServer(translate(val, poop.settings.ChatLanguage),"All") end end)
+poop.chats:Create("Dropdown", "Emojis", function(val) if poop.settings.ChatEnabled then poop.Yo.chatremote:FireServer(val,"All") end end, {options = getemojis()})
 
 -- ui toggler
 poop.services.UIS.InputBegan:Connect(function(input, gpe)
