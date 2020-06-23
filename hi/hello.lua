@@ -31,7 +31,7 @@ poop.languages = {afrikaans = "af",albanian = "sq",amharic = "am",arabic = "ar",
 poop.languagelist = {}
 
 for i,v in pairs(poop.languages) do
-    poop.languagelist[i] = true
+    table.insert(poop.languagelist, i)
 end
 
 poop.getsenvv = function(scr) -- script.Disabled meme
@@ -41,6 +41,9 @@ poop.getsenvv = function(scr) -- script.Disabled meme
         end
     end
 end
+
+--load in main functions
+loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/functions.lua"))()
 
 poop.library = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/zypherlib.lua"))()
 poop.settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/settings.lua"))()
@@ -61,7 +64,7 @@ poop.misc = poop.main:CreateCategory("Misc") -- misc
 poop.chats = poop.misc:CreateSection("Chat")
 poop.chats:Create("Toggle", "Enable", function(state) poop.settings.ChatEnabled = state end)
 poop.chats:Create("Dropdown", "Language", function(val) poop.settings.ChatLanguage = poop.languages[val] end, {options = poop.languagelist})
-poop.chats:Create("Textbox", "Message", function(val) if poop.settings.ChatEnabled then poop.Yo.chatremote:FireServer(translate(val, poop.settings.ChatLanguage),"All") end end)
+poop.chats:Create("Textbox", "Message", function(val) if poop.settings.ChatEnabled then poop.Yo.chatremote:FireServer(translate(val, poop.settings.ChatLanguage),"All") end end, {text = "Poggers"})
 poop.chats:Create("Dropdown", "Emojis", function(val) if poop.settings.ChatEnabled then poop.Yo.chatremote:FireServer(val,"All") end end, {options = getemojis()})
 
 -- ui toggler
@@ -71,5 +74,4 @@ poop.services.UIS.InputBegan:Connect(function(input, gpe)
     end
 end)
 
---load in main functions
-loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/functions.lua"))()
+
