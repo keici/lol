@@ -1,4 +1,4 @@
-local function drawsquare()
+function drawsquare()
     local square = Drawing.new("Square")
     square.Thickness = 1
     square.Filled = false
@@ -7,7 +7,7 @@ local function drawsquare()
     return square
 end
 
-local function drawtext()
+function drawtext()
     local text = Drawing.new("Text")
     text.Transparency = 1
     text.Size = 14
@@ -17,7 +17,7 @@ local function drawtext()
     return text
 end
 
-local function drawcircle()
+function drawcircle()
     local circle = Drawing.new("Circle")
     circle.Transparency = 1
     circle.Thickness = 1
@@ -27,9 +27,10 @@ end
 
 local settings = poop.settings
 local services = poop.services
+local links = poop.links
 local Carti = poop.Carti
 
-local function createesp(player, box, name)
+function createesp(player, box, name)
     services.RunService:BindToRenderStep(player.Name, 1, function()
         if player and player.TeamColor ~= Carti.LP.TeamColor then
             if player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character.Humanoid.Health > 0 then
@@ -58,6 +59,64 @@ local function createesp(player, box, name)
             name.Visible = false
         end
     end)
+end
+
+function translatetoen(m)
+	local str 
+	local getlang = syn.request({
+		Url = links.detlan..links.trkey.."&text="..services.Http:UrlEncode(m),
+		Method = "GET"
+	})
+	local lang = services.Http:JSONDecode(getlang.Body).lang
+	if lang then
+		local message = syn.request({
+			Url = links.tr..links.trkey.."&text="..services.Http:UrlEncode(m).."&lang="..lang.."-en",
+			Method = "GET"
+		})
+		str = services.Http:JSONDecode(message.Body).text[1]
+	end
+	return str or ""
+end
+
+function translate(m, n)
+	local message = syn.request({
+		Url = links.tr..links.trkey.."&text="..services.Http:UrlEncode(m).."&lang=en-"..n,
+		Method = "GET"
+	})
+	return services.Http:JSONDecode(message.Body).text[1]
+end
+
+function emojiutf(emoji)
+	local str = ""
+	local a = emoji:gsub("%w", "")
+	for i,v in utf8.codes(a) do
+		str = str..v..","
+	end
+	str = str:sub(1, -1)
+	return str
+end
+
+function getemojis()
+	local emojis = {}
+
+	local get = syn.request({
+		Url = links.emojis.."?"..links.emojikey,
+		Method = "GET"
+	})
+
+	for i,v in pairs(services.Http:JSONDecode(get.Body)) do
+		for i2,v2 in pairs(v) do
+			if i2 == "character" then
+				table.insert(emojis, v2)
+			end
+		end
+	end
+
+	return emojis
+end
+
+function utfemoji(num)
+	return utf8.char(num)
 end
 
 for i,v in pairs(services.Players:GetPlayers()) do

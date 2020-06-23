@@ -3,5 +3,7 @@ return {
     ESPEnabled = false,
     BoxESPEnabled = false,
     NameESPEnabled = false,
-    MiscEnabled = false
+    MiscEnabled = false,
+    ChatEnabled = false,
+    ChatLanguage = "en"
 }
