@@ -63,7 +63,7 @@ poop.misc = poop.main:CreateCategory("Misc") -- misc
 
 poop.chats = poop.misc:CreateSection("Chat")
 poop.chats:Create("Toggle", "Enable", function(state) poop.settings.ChatEnabled = state end)
-poop.chats:Create("Dropdown", "Language", function(val) poop.settings.ChatLanguage = poop.languages[val] end, {options = poop.languagelist})
+poop.chats:Create("Dropdown", "Language", function(val) poop.settings.ChatLanguage = poop.languages[val] end, {options = poop.languagelist, search = true})
 poop.chats:Create("Textbox", "Message", function(val) if poop.settings.ChatEnabled then poop.Yo.chatremote:FireServer(translate(val, poop.settings.ChatLanguage),"All") end end, {text = "Poggers"})
 poop.chats:Create("Dropdown", "Emojis", function(val) if poop.settings.ChatEnabled then poop.Yo.chatremote:FireServer(val,"All") end end, {options = getemojis()})
 
