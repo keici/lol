@@ -14,28 +14,7 @@ poop.Carti = {
     Camera = workspace.CurrentCamera
 }
 
-poop.library = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/zypherlib.lua"))()
-poop.settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/settings.lua"))()
-
-poop.getfeature = function(name)
-    return loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/features/"..name..".lua"))()
-end
-
-poop.main = poop.library:CreateMain("Poggers")
-
-poop.esp = poop.main:CreateCategory("ESP")
-poop.eplayers = poop.esp:CreateSection("Players")
-
-
-
-poop.services.UIS.InputBegan:Connect(function(input, gpe)
-    if input.KeyCode == Enum.KeyCode.Insert and not gpe then 
-        poop.services.CoreGui.Poggers.Enabled = not poop.services.CoreGui.Poggers.Enabled
-    end
-end)
-
--- if retard does script.Disabled lol
-poop.getsenvv = function(scr)
+poop.getsenvv = function(scr) -- script.Disabled meme
     for i,v in pairs(getgc()) do
         if getfenv(v).script == scr then
             return getfenv(v) or {}
@@ -43,10 +22,21 @@ poop.getsenvv = function(scr)
     end
 end
 
-local bruh = {}
-bruh.esp = poop.getfeature("esp")
-bruh.box = poop.getfeature("boxesp")
-bruh.name = poop.getfeature("nameesp")
+poop.library = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/zypherlib.lua"))()
+poop.settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/settings.lua"))()
+poop.main = poop.library:CreateMain("Poggers")
 
+poop.esp = poop.main:CreateCategory("ESP") -- ESP
+poop.eplayers = poop.esp:CreateSection("Players")
+poop.eplayers:Create("Toggle", "Enable ESP", function(state) poop.settings.ESPEnabled = state end)
+poop.eplayers:Create("Toggle", "Box ESP", function(state) poop.settings.BoxESPEnabled = state end)
+poop.eplayers:Create("Toggle", "Name ESP", function(state) poop.settings.NameESPEnabled = state end)
+
+
+poop.services.UIS.InputBegan:Connect(function(input, gpe)
+    if input.KeyCode == Enum.KeyCode.Insert and not gpe then 
+        poop.services.CoreGui.Poggers.Enabled = not poop.services.CoreGui.Poggers.Enabled
+    end
+end)
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/keici/lol/master/hi/functions.lua"))()
