@@ -8,7 +8,8 @@
            |___/  |_|                          
 
    Made by: xTheAlex14#3200
-   Docs: https://zypher.wtf/docs/uilibdocs.html
+   Design: Inspiration from Luzu#7969
+   https://zypher.wtf/docs/uilibdocs.html
 ]]
 
 local lib = {}
@@ -26,6 +27,8 @@ function lib:Create(what, propri)
 end
 
 local mouse = game.Players.LocalPlayer:GetMouse()
+local UIS = game:GetService("UserInputService")
+local TS = game:GetService("TweenService")
 
 function lib:CreateMain(projName)
     if game:GetService("CoreGui"):FindFirstChild(projName) then
@@ -819,9 +822,9 @@ function lib:CreateMain(projName)
                                     CallBack(things.value)
                                 end
 
-                                game:GetService("TweenService"):Create(things.sliderinner, TweenInfo.new(0.05), {Size = UDim2.new(s, 0, 1, -2)}):Play()
+                                TS:Create(things.sliderinner, TweenInfo.new(0.05), {Size = UDim2.new(s, 0, 1, -2)}):Play()
                             end)
-                            game:GetService("UserInputService").InputEnded:Connect(function(Check)
+                            UIS.InputEnded:Connect(function(Check)
                                 if Check.UserInputType == Enum.UserInputType.MouseButton1 then
                                     if moveconnection then
                                         moveconnection:Disconnect()
@@ -1708,29 +1711,28 @@ function lib:CreateMain(projName)
                                 
                             end)
 
-                            wait(.2)
-
+                            local Found = {}
                             local searchtable = {}
 
                             for i,v in pairs(options) do
                                 table.insert(searchtable, string.lower(v))
                             end
 
-                            local Found = {}
-
-                            function Edit()
+                            local function Edit()
                                 for i in pairs(Found) do
                                     Found[i] = nil
                                 end
-                                for i,v in pairs(things.list:GetChildren()) do
-                                    if not v:IsA("UIListLayout") and not v:IsA("UIPadding") then
-                                        v.Visible = false
+                                for h,l in pairs(things.list:GetChildren()) do
+                                    if not l:IsA("UIListLayout") and not l:IsA("UIPadding") then
+                                        l.Visible = false
                                     end
                                 end
                                 things.selected.Text = string.lower(things.selected.Text)
                             end
 
-                            function Search()
+                            local function Search()
+                                local Results = {}
+                                local num
                                 for i,v in pairs(searchtable) do
                                     if string.find(v, things.selected.Text) then
                                         table.insert(Found, v)
@@ -1743,11 +1745,9 @@ function lib:CreateMain(projName)
                                         end
                                     end
                                 end
-                                local Results = {}
-                                local num
-                                for a,b in pairs(things.list:GetChildren()) do
-                                    if not b:IsA("UIListLayout") and not b:IsA("UIPadding") and b.Visible == true then
-                                        table.insert(Results, b)
+                                for p,n in pairs(things.list:GetChildren()) do
+                                    if not n:IsA("UIListLayout") and not n:IsA("UIPadding") and n.Visible == true then
+                                        table.insert(Results, n)
                                         for c,d in pairs(Results) do
                                             num = c
                                             howmany = c
@@ -1755,10 +1755,8 @@ function lib:CreateMain(projName)
                                     end
                                 end
                                 if num ~= nil then
-                                    pcall(function()
-                                        num = num/10
-                                    end)
-                                    things.list.CanvasSize = UDim2.new(0, 0, num, 0)
+                                    num = num*40
+                                    things.list.CanvasSize = UDim2.new(0, 0, 0, num) + UDim2.new(0, 0, 0, 20)
                                     num = 0
                                 end
                             end
@@ -1775,7 +1773,7 @@ function lib:CreateMain(projName)
                                 end
                             end)
 
-                            function Nil()
+                            local function Nil()
                                 for i,v in pairs(things.list:GetChildren()) do
                                     if not v:IsA("UIListLayout") and not v:IsA("UIPadding") and v.Visible == false then
                                         game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y) + UDim2.new(0,0,0,26)}):Play()
@@ -1790,14 +1788,12 @@ function lib:CreateMain(projName)
                                     game:GetService("TweenService"):Create(things.list, TweenInfo.new(0.1), {CanvasSize = UDim2.new(0, 0, 0, things.list["UIListLayout"].AbsoluteContentSize.Y) + UDim2.new(0,0,0,26)}):Play()
                                     SearchLock = true
                                     Nil()
-                                    
                                     things.selected.Text = "Search..."
                                 end
                             end)
 
                             things.selected.Focused:connect(function()
                                 SearchLock = false
-                            
                             end)
                         end
                     elseif string.lower(Type) == "colorpicker" then
@@ -2230,7 +2226,7 @@ function lib:CreateMain(projName)
                             local cY = math.clamp(rY, 0, things.rainbow.AbsoluteSize.Y - things.rainbowlocation.AbsoluteSize.Y);
                             local offset = (y - things.rainbow.AbsolutePosition.Y) - things.rainbowlocation.AbsoluteSize.Y
                             local scale = offset / things.rainbow.AbsoluteSize.Y
-                            game:GetService("TweenService"):Create(things.rainbowlocation, TweenInfo.new(0.1), {Position = UDim2.new(0, 0, 0, cY)}):Play()
+                            TS:Create(things.rainbowlocation, TweenInfo.new(0.1), {Position = UDim2.new(0, 0, 0, cY)}):Play()
                             local color = Color3.fromHSV(math.clamp(scale, 0, 1), 1, 1)
                             local r,g,b = math.floor(color.r * 255), math.floor(color.g * 255), math.floor(color.b * 255)
                             colorbase = Color3.fromRGB(r,g,b)
@@ -2243,7 +2239,7 @@ function lib:CreateMain(projName)
                             Saturation = x / 140
                             Darkness = y / 140
                             
-                            game:GetService("TweenService"):Create(things.ring, TweenInfo.new(0.1), {Position = UDim2.new(0, x, 0, y)}):Play()
+                            TS:Create(things.ring, TweenInfo.new(0.1), {Position = UDim2.new(0, x, 0, y)}):Play()
                             
                             UpdateColorPicker()
                         end
@@ -2251,7 +2247,7 @@ function lib:CreateMain(projName)
                         local rc
                         local cc
 
-                        game:GetService("UserInputService").InputEnded:Connect(function(Mouse)
+                        UIS.InputEnded:Connect(function(Mouse)
                             if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
                                 if(cc) then
                                     cc:Disconnect()
